@@ -25,8 +25,8 @@ public class TopDownCam : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
+
     }
 
     private void Update()

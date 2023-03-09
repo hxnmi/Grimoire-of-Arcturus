@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookToCamera : MonoBehaviour
+public class LookAtCamera : MonoBehaviour
 {
 
     // Use this for initialization

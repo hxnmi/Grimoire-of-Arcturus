@@ -46,6 +46,9 @@ public class PlayerMovement: MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -55,7 +58,7 @@ public class PlayerMovement: MonoBehaviour
 
     private void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight, whatIsGround);
 
         MyInput();
         StateHandler();
