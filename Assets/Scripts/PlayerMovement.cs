@@ -64,10 +64,15 @@ public class PlayerMovement: MonoBehaviour
         StateHandler();
 
         if (grounded)
+        {
             rb.drag = groundDrag;
+        }
         else
+        {
+            Debug.DrawRay(transform.position, Vector3.down * playerHeight, Color.blue);
             rb.drag = 0;
-
+        }
+            
         if (Input.GetKeyDown(KeyCode.Q))
         {
             targetRotation *= Quaternion.AngleAxis(90, Vector3.up);
@@ -103,8 +108,7 @@ public class PlayerMovement: MonoBehaviour
 
     private void StateHandler()
     {
-         
-
+        
         // walking
         if (grounded)
         {
@@ -123,12 +127,13 @@ public class PlayerMovement: MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        
 
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 2f * airMultiplier, ForceMode.Force);
 
     }
 
