@@ -34,15 +34,18 @@ public class CompanionController : MonoBehaviour
         this.GetComponent<UnityEngine.AI.NavMeshAgent>().ResetPath();
 
         Vector3 direction = player.position - this.transform.position;
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * this.chasingRotSpeed);
 
         Rigidbody rbplayer = player.GetComponent<Rigidbody>();
 
         if (rbplayer.velocity == new Vector3(0, 0, 0))
         {
-            Vector3 StayPoint = lastPlaceSeen;
-            StayPoint += new Vector3(Random.Range(-patrolDistance, patrolDistance), 0, Random.Range(-patrolDistance, patrolDistance));
-            this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(StayPoint);
+            Vector3 AwayPoint = lastPlaceSeen;
+            AwayPoint += new Vector3(player.position.x + Random.Range(-2, 2), 0, player.position.y + Random.Range(-2, 2));
+            this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(AwayPoint);
+        }
+        else
+        {
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * this.chasingRotSpeed);
         }
 
         if (direction.magnitude > this.chasingAccuracy)
@@ -153,3 +156,24 @@ public class CompanionController : MonoBehaviour
             Debug.Log("Guard's state: " + curState);
     }
 }
+
+
+//void Circle(internal steps, float radius)
+//{
+//    circleRenderer.positionCount = steps;
+
+//    for (int currentStep = 0; currentStep < steps; currentStep++)
+//    {
+//        float circumferenceProgreess = (float)currentStep / steps;
+//        float currentRadian = circumferenceProgress * 2 * Mathf.PI;
+
+//        float xScaled = Mathf.Cos(currentRadian);
+//        float zScaled = Mathf.Sin(currentRadian);
+
+//        float x = xScaled * radius;
+//        float z = zScaled * radius;
+
+//        Vector3 currentPosition = new Vector3(x, 0, z);
+
+//    }
+//}
