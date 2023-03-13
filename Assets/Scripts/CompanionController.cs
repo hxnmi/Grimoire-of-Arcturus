@@ -37,10 +37,10 @@ public class CompanionController : MonoBehaviour
 
         Rigidbody rbplayer = player.GetComponent<Rigidbody>();
 
-        if (rbplayer.velocity == new Vector3(0, 0, 0))
+        if (rbplayer.velocity.magnitude < 2)
         {
             Vector3 AwayPoint = lastPlaceSeen;
-            AwayPoint += new Vector3(player.position.x + Random.Range(-2, 2), 0, player.position.y + Random.Range(-2, 2));
+            AwayPoint += new Vector3(Random.Range(-4, 4), 0, Random.Range(-4, 4));
             this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(AwayPoint);
         }
         else
