@@ -35,7 +35,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             Interactable interactable = objectinteractable.GetComponent<Collider>().GetComponent<Interactable>();
             
-            Debug.DrawRay(this.transform.position, direction, Color.red);
+            Debug.DrawRay(this.transform.position, direction, Color.blue);
 
             if (interactable != null)
             {
