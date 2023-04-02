@@ -30,7 +30,7 @@ public class CompanionController : MonoBehaviour
 
     void Chase(Transform player)
     {
-        this.GetComponent<UnityEngine.AI.NavMeshAgent>().Stop();
+        //this.GetComponent<UnityEngine.AI.NavMeshAgent>().Stop();
         this.GetComponent<UnityEngine.AI.NavMeshAgent>().ResetPath();
 
         Vector3 direction = player.position - this.transform.position;

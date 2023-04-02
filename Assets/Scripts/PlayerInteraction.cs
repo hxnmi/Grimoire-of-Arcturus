@@ -11,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     public UnityEngine.UI.Image interactionHoldProgress;
     //Camera cam;
     //public Transform button;
-    bool triggering = false;
+    //bool triggering = false;
     public float fovDist = 40.0f;
     public float fovAngle = 45.0f;
 
@@ -35,7 +35,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             Interactable interactable = objectinteractable.GetComponent<Collider>().GetComponent<Interactable>();
             
-            Debug.DrawRay(this.transform.position, direction, Color.red);
+            Debug.DrawRay(this.transform.position, direction, Color.blue);
 
             if (interactable != null)
             {
