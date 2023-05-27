@@ -11,14 +11,14 @@ public class SelectionFloating : MonoBehaviour
     Vector3 pos;
     Transform selectionObj;
 
-    void Start() 
+    void Start()
     {
         pos = new Vector3(x, y, 0);
     }
 
     void Update()
     {
-        if(selectionObj != null) 
+        if (selectionObj != null)
         {
             var selectionRenderer = selectionObj.GetComponent<Renderer>();
             selectionRenderer.material = defaultMaterial;
@@ -27,16 +27,16 @@ public class SelectionFloating : MonoBehaviour
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(pos);
-        
-        if(Physics.Raycast(ray, out hit))
+
+        if (Physics.Raycast(ray, out hit))
         {
             var selection = hit.transform;
 
-            if(selection.CompareTag("Selectable"))
+            if (selection.CompareTag("Selectable"))
             {
                 var selectionRenderer = selection.GetComponent<Renderer>();
 
-                if(selectionRenderer != null)
+                if (selectionRenderer != null)
                 {
                     selectionRenderer.material = highlightMaterial;
                 }

@@ -198,4 +198,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d343f7b75833a42a59188d6f800cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  enemyHP: 3

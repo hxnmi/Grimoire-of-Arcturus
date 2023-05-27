@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] int enemyHP;
 
-    public float health = 3;
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter(Collision other)
     {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject.CompareTag("PlayerWeapon"))
+        {
+            enemyHP -= 1;
+
+            if (enemyHP <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
