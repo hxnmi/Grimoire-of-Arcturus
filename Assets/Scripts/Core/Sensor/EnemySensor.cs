@@ -11,7 +11,7 @@ public class EnemySensor : MonoBehaviour
 
     private EnemySenseFlag state;
 
-    private GameObject _currentSelectedObject;
+    public static GameObject CurrentTargetObject;
     private int targetSelectedId = 0; //in case there's queue aim selection;
 
     private GameObject dummyLookAt;
@@ -28,7 +28,7 @@ public class EnemySensor : MonoBehaviour
         //Check if there are'nt detected enemies nearby
         if (!sensor.HasHit || sensor.HitCount < 1)
         {
-            _currentSelectedObject = null;
+            CurrentTargetObject = null;
             state = EnemySenseFlag.IDLE;
             return;
         }
@@ -36,14 +36,14 @@ public class EnemySensor : MonoBehaviour
         if (state == EnemySenseFlag.IDLE)
         {
             //get reference detected objects
-            _currentSelectedObject = sensor.HitColliders[targetSelectedId].gameObject;
+            CurrentTargetObject = sensor.HitColliders[targetSelectedId].gameObject;
             state = EnemySenseFlag.DETECTED;
         }
         else
         {
             //get transform look at from current selected object for aim purposes
-            dummyLookAt.transform.LookAt(_currentSelectedObject.transform);
-            enemyAt.transform.position = _currentSelectedObject.transform.position;
+            dummyLookAt.transform.LookAt(CurrentTargetObject.transform);
+            enemyAt.transform.position = CurrentTargetObject.transform.position;
             arrow.localEulerAngles = new Vector3(arrow.localEulerAngles.x, dummyLookAt.transform.localEulerAngles.y, arrow.localEulerAngles.z);
         }
     }
