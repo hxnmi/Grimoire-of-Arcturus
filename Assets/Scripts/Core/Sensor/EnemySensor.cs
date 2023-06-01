@@ -7,6 +7,8 @@ public class EnemySensor : MonoBehaviour
 {
     [SerializeField] private BoxOverlapSensor sensor;
     [SerializeField] private Transform arrow;
+    [SerializeField] private GameObject enemyAt;
+
     private EnemySenseFlag state;
 
     private GameObject _currentSelectedObject;
@@ -41,6 +43,7 @@ public class EnemySensor : MonoBehaviour
         {
             //get transform look at from current selected object for aim purposes
             dummyLookAt.transform.LookAt(_currentSelectedObject.transform);
+            enemyAt.transform.position = _currentSelectedObject.transform.position;
             arrow.localEulerAngles = new Vector3(arrow.localEulerAngles.x, dummyLookAt.transform.localEulerAngles.y, arrow.localEulerAngles.z);
         }
     }

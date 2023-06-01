@@ -6,16 +6,19 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int enemyHP;
 
-    private void OnCollisionEnter(Collision other)
+    public void Damage(int amount)
     {
-        if (other.gameObject.CompareTag("PlayerWeapon"))
-        {
-            enemyHP -= 1;
+        enemyHP -= amount;
 
-            if (enemyHP <= 0)
-            {
-                Destroy(gameObject);
-            }
+        if (enemyHP <= 0)
+        {
+            Destroy(gameObject);
         }
     }
+
+    public void Heal(int amount)
+    {
+        enemyHP += amount;
+    }
+
 }

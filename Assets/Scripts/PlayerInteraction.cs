@@ -22,7 +22,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        
+
         GameObject objectinteractable = FindClosestInteractable();
 
         Vector3 direction = objectinteractable.transform.position - this.transform.position;
@@ -31,10 +31,10 @@ public class PlayerInteraction : MonoBehaviour
         bool successfulHit = false;
 
         RaycastHit hit;
-        if (Physics.Raycast(this.transform.position, direction,out hit) && direction.magnitude < fovDist && angle < fovAngle)
+        if (Physics.Raycast(this.transform.position, direction, out hit) && direction.magnitude < fovDist && angle < fovAngle)
         {
             Interactable interactable = objectinteractable.GetComponent<Collider>().GetComponent<Interactable>();
-            
+
             Debug.DrawRay(this.transform.position, direction, Color.blue);
 
             if (interactable != null)
@@ -51,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         if (!successfulHit)
         {
             interactionText.text = "";
-            //interactionHoldGO.SetActive(false);
+            // interactionHoldGO.SetActive(false);
         }
 
         //if (!successfulHit) interactionText.text = "";
