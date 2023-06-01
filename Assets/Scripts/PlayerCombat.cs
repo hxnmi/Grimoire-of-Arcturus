@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-     
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
         }
     }
 
-    void Attack()
+    private void Attack()
     {
-        //animasi
-
-        //var bullet = Instantiate(bulletPrefabs, BulletSpawnPoint.position, BulletSpawnPoint.rotation);
-        //bullet.GetComponent<Rigidbody>().velocity = BulletSpawnPoint.forward * bulletSpeed;
+        if (EnemySensor.CurrentTargetObject)
+        {
+            var enemy = EnemySensor.CurrentTargetObject.GetComponent<IIEnemy>();
+            enemy?.Damage(Random.Range(1, 10));
+        }
     }
 }

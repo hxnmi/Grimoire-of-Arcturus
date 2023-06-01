@@ -20,5 +20,4 @@ public class EnemyHealth : MonoBehaviour
     {
         enemyHP += amount;
     }
-
 }
