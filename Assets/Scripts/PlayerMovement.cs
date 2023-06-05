@@ -47,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         air
     }
 
+    bool running = true;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -129,8 +131,6 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        Debug.Log(moveDirection);
-
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
@@ -139,12 +139,12 @@ public class PlayerMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * smooth * Time.deltaTime);
 
-        Quaternion toRotation = Quaternion.LookRotation(moveDirection);
-
-        if (!EnemySensor.CurrentTargetObject)
-            attackRotate.transform.rotation = Quaternion.RotateTowards(attackRotate.transform.rotation, toRotation, 1000 * Time.deltaTime);
-
-
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(moveDirection);
+            if (!EnemySensor.CurrentTargetObject)
+                attackRotate.transform.rotation = Quaternion.RotateTowards(attackRotate.transform.rotation, toRotation, 1000 * Time.deltaTime);
+        }
     }
 
     private void Jump()
