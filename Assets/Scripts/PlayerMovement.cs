@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement: MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] GameObject attackRotate;
+
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -72,7 +75,7 @@ public class PlayerMovement: MonoBehaviour
             Debug.DrawRay(transform.position, Vector3.down * playerHeight, Color.blue);
             rb.drag = 0;
         }
-            
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             targetRotation *= Quaternion.AngleAxis(90, Vector3.up);
@@ -81,8 +84,6 @@ public class PlayerMovement: MonoBehaviour
         {
             targetRotation *= Quaternion.AngleAxis(-90, Vector3.up);
         }
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * smooth * Time.deltaTime);
     }
 
     private void FixedUpdate()
@@ -95,7 +96,7 @@ public class PlayerMovement: MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
 
@@ -108,7 +109,7 @@ public class PlayerMovement: MonoBehaviour
 
     private void StateHandler()
     {
-        
+
         // walking
         if (grounded)
         {
@@ -127,13 +128,22 @@ public class PlayerMovement: MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
+
+        Debug.Log(moveDirection);
 
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 2f * airMultiplier, ForceMode.Force);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * smooth * Time.deltaTime);
+
+        Quaternion toRotation = Quaternion.LookRotation(moveDirection);
+
+        if (!EnemySensor.CurrentTargetObject)
+            attackRotate.transform.rotation = Quaternion.RotateTowards(attackRotate.transform.rotation, toRotation, 1000 * Time.deltaTime);
+
 
     }
 
