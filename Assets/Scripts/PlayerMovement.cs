@@ -80,11 +80,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            targetRotation *= Quaternion.AngleAxis(90, Vector3.up);
+            targetRotation *= Quaternion.AngleAxis(45, Vector3.up);
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            targetRotation *= Quaternion.AngleAxis(-90, Vector3.up);
+            targetRotation *= Quaternion.AngleAxis(-45, Vector3.up);
         }
     }
 

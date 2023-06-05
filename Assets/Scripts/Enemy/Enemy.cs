@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour, IIEnemy
     public virtual void Damage(int amount)
     {
         curCol = this.GetComponentInChildren<SpriteRenderer>().color;
-        Color newCol = new Color(curCol.r, curCol.g, curCol.b, (curCol.a + 0.1f) - amount / hp);
+        Color newCol = new Color(curCol.r, curCol.g, curCol.b, (curCol.a + 0.15f) - amount / hp);
         this.GetComponentInChildren<SpriteRenderer>().color = newCol;
         Debug.Log("Enemy damaged with : " + amount);
         hp -= amount;
