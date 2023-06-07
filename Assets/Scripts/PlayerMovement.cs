@@ -7,6 +7,14 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] GameObject attackRotate;
 
+
+    [SerializeField] GameObject averyFront;
+    [SerializeField] GameObject averyRight;
+    [SerializeField] GameObject averyLeft;
+    [SerializeField] GameObject averyBack;
+    Animator anim;
+    string currentState;
+
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -129,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        // Movement
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if (grounded)
@@ -139,11 +148,64 @@ public class PlayerMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * smooth * Time.deltaTime);
 
+        // EnemyAt Rotation
         if (horizontalInput != 0 || verticalInput != 0)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection);
             if (!EnemySensor.CurrentTargetObject)
                 attackRotate.transform.rotation = Quaternion.RotateTowards(attackRotate.transform.rotation, toRotation, 1000 * Time.deltaTime);
+        }
+
+        // Animation
+        if (rb.velocity.magnitude > 1f)
+        {
+            if (verticalInput < 0)
+            {
+                averyFront.SetActive(true);
+                averyRight.SetActive(false);
+                averyBack.SetActive(false);
+                averyLeft.SetActive(false);
+                anim = averyFront.GetComponent<Animator>();
+                ChangeAnimationState("WalkFront_player");
+
+            }
+            else if (verticalInput > 0)
+            {
+                averyBack.SetActive(true);
+                averyFront.SetActive(false);
+                averyRight.SetActive(false);
+                averyLeft.SetActive(false);
+                anim = averyBack.GetComponent<Animator>();
+                ChangeAnimationState("WalkBack_player");
+
+            }
+            else if (horizontalInput > 0)
+            {
+                averyRight.SetActive(true);
+                averyBack.SetActive(false);
+                averyFront.SetActive(false);
+                averyLeft.SetActive(false);
+                anim = averyRight.GetComponent<Animator>();
+                ChangeAnimationState("WalkRight_player");
+            }
+            else if (horizontalInput < 0)
+            {
+                averyLeft.SetActive(true);
+                averyRight.SetActive(false);
+                averyFront.SetActive(false);
+                averyBack.SetActive(false);
+                anim = averyLeft.GetComponent<Animator>();
+                ChangeAnimationState("WalkLeft_player");
+            }
+            else
+            {
+                averyFront.SetActive(true);
+                averyRight.SetActive(false);
+                averyBack.SetActive(false);
+                averyLeft.SetActive(false);
+                anim = averyFront.GetComponent<Animator>();
+                ChangeAnimationState("Idle_player");
+            }
         }
     }
 
@@ -158,6 +220,15 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        anim.Play(newState);
+
+        currentState = newState;
     }
 
 }
