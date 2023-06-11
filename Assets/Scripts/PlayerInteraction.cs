@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] GameObject companion;
+    [SerializeField] Material highlightMaterial;
+    [SerializeField] Material defaultMaterial;
+
     //public float interactionDistance;
 
     public TMPro.TextMeshProUGUI interactionText;
@@ -15,18 +17,22 @@ public class PlayerInteraction : MonoBehaviour
     //bool triggering = false;
     public float fovDist = 40.0f;
     public float fovAngle = 45.0f;
+    Transform selectionObj;
 
     void Start()
     {
         //cam = GetComponent<Camera>();
+
     }
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (selectionObj != null)
         {
-            companion.GetComponent<CompanionController>().GoTo();
+            var selectionRenderer = selectionObj.GetComponent<Renderer>();
+            selectionRenderer.material = defaultMaterial;
+            selectionObj = null;
         }
 
         GameObject objectinteractable = FindClosestInteractable();
@@ -52,6 +58,16 @@ public class PlayerInteraction : MonoBehaviour
                 //interactionHoldGO.SetActive(interactable.interactionType == Interactable.InteractionType.Hold);
             }
 
+            var selectionRenderer = objectinteractable.GetComponent<Renderer>();
+
+            if (selectionRenderer != null)
+            {
+                selectionRenderer.material = highlightMaterial;
+            }
+            selectionObj = objectinteractable.transform;
+            // curCol = this.GetComponentInChildren<SpriteRenderer>().color;
+            // Color newCol = new Color(curCol.r, curCol.g, curCol.b, curCol.a + amount / maxHp);
+            // this.GetComponentInChildren<SpriteRenderer>().color = newCol;
         }
 
         if (!successfulHit)
@@ -126,8 +142,6 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 interactionHoldProgress.fillAmount = interactable.GetHoldTime();
                 break;
-            case Interactable.InteractionType.tes:
-            //tes
 
             default:
                 throw new System.Exception("Unsupported type of interactable.");

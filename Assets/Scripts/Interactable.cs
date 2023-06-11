@@ -9,7 +9,6 @@ public abstract class Interactable : MonoBehaviour
     {
         Click,
         Hold,
-        tes
     }
 
     float holdTime;

@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class TriggerCheck : MonoBehaviour
 {
-    Renderer rend;
+    MeshRenderer rend;
 
-    void Start() 
+    void Start()
     {
-        rend = GetComponent<Renderer>();
+        rend = GetComponent<MeshRenderer>();
     }
 
-    private void OnTriggerStay(Collider other) 
+    private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             rend.enabled = true;
         }
     }
 
-    private void OnTriggerExit() 
+    private void OnTriggerExit()
     {
         rend.enabled = false;
     }

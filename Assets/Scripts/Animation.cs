@@ -24,16 +24,16 @@ public class Animation : MonoBehaviour
         player = GameObject.Find("Player");
         weapon = player.transform.FindChild("WeaponObj").gameObject;
     }
-    void Update()
-    {
-        if (weapon.transform.childCount > 0)
-            return;
-        else
-        {
-            anim = grimoire.GetComponent<Animator>();
-            ChangeAnimationState("Grimoire_Back");
-        }
-    }
+    // void Update()
+    // {
+    //     if (weapon.transform.childCount > 0)
+    //         return;
+    //     else
+    //     {
+    //         anim = grimoire.GetComponent<Animator>();
+    //         ChangeAnimationState("Grimoire_Back");
+    //     }
+    // }
 
     public void Animate()
     {

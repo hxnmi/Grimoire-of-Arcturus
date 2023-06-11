@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-	
-	void Update()
-	{
-		
-		if (Input.GetMouseButtonDown(0))
-		{
-			Attack();
-		}
-	}
+    [SerializeField] GameObject companion;
+    void Update()
+    {
 
-	private void Attack()
-	{
-		if (EnemySensor.CurrentTargetObject)
-		{
-			var enemy = EnemySensor.CurrentTargetObject.GetComponent<IIEnemy>();
-			enemy?.Damage(Random.Range(1, 10));
-			//Animasi
-		}
-		//Animasi
-	}
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            companion.GetComponent<CompanionController>().GoTo();
+        }
+    }
+
+    private void Attack()
+    {
+        if (EnemySensor.CurrentTargetObject)
+        {
+            var enemy = EnemySensor.CurrentTargetObject.GetComponent<IIEnemy>();
+            enemy?.Damage(Random.Range(1, 10));
+            //Animasi
+        }
+        //Animasi
+    }
 }

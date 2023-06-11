@@ -11,6 +11,7 @@ public class Grimoire : Interactable
         this.gameObject.transform.SetParent(weapon.transform);
         this.gameObject.transform.localPosition = new Vector3(1f, 1f, 0);
         this.GetComponent<CapsuleCollider>().enabled = false;
+        Destroy(gameObject.transform.GetChild(0).gameObject);
         weapon.GetComponentInParent<PlayerCombat>().enabled = true;
     }
 
