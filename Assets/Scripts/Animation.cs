@@ -8,13 +8,32 @@ public class Animation : MonoBehaviour
     [SerializeField] GameObject averyRight;
     [SerializeField] GameObject averyLeft;
     [SerializeField] GameObject averyBack;
+    [SerializeField] GameObject grimoire;
 
-    [SerializeField] GameObject weapon;
+    GameObject player;
 
+    GameObject weapon;
 
     Animator anim;
     string currentState;
     bool walk;
+
+    [System.Obsolete]
+    private void Start()
+    {
+        player = GameObject.Find("Player");
+        weapon = player.transform.FindChild("WeaponObj").gameObject;
+    }
+    void Update()
+    {
+        if (weapon.transform.childCount > 0)
+            return;
+        else
+        {
+            anim = grimoire.GetComponent<Animator>();
+            ChangeAnimationState("Grimoire_Back");
+        }
+    }
 
     public void Animate()
     {
@@ -28,9 +47,12 @@ public class Animation : MonoBehaviour
         {
             if (verticalInput < 0)
             {
-                anim = weapon.GetComponentInChildren<Animator>();
-                ChangeAnimationState("Grimoire_Front");
-                weapon.transform.localPosition = Vector3.zero;
+                if (weapon.transform.childCount > 0)
+                {
+                    anim = weapon.GetComponentInChildren<Animator>();
+                    ChangeAnimationState("Grimoire_Front");
+                    weapon.transform.localPosition = Vector3.zero;
+                }
                 averyFront.SetActive(true);
                 averyRight.SetActive(false);
                 averyBack.SetActive(false);
@@ -40,9 +62,12 @@ public class Animation : MonoBehaviour
             }
             else if (verticalInput > 0)
             {
-                anim = weapon.GetComponentInChildren<Animator>();
-                ChangeAnimationState("Grimoire_Back");
-                weapon.transform.localPosition = new Vector3(-2f, 0, 0);
+                if (weapon.transform.childCount > 0)
+                {
+                    anim = weapon.GetComponentInChildren<Animator>();
+                    ChangeAnimationState("Grimoire_Back");
+                    weapon.transform.localPosition = new Vector3(-2f, 0, 0);
+                }
                 averyBack.SetActive(true);
                 averyFront.SetActive(false);
                 averyRight.SetActive(false);
@@ -52,9 +77,12 @@ public class Animation : MonoBehaviour
             }
             else if (horizontalInput > 0)
             {
-                anim = weapon.GetComponentInChildren<Animator>();
-                ChangeAnimationState("Grimoire_Side");
-                weapon.transform.localPosition = Vector3.zero;
+                if (weapon.transform.childCount > 0)
+                {
+                    anim = weapon.GetComponentInChildren<Animator>();
+                    ChangeAnimationState("Grimoire_Side");
+                    weapon.transform.localPosition = Vector3.zero;
+                }
                 averyRight.SetActive(true);
                 averyBack.SetActive(false);
                 averyFront.SetActive(false);
@@ -64,9 +92,12 @@ public class Animation : MonoBehaviour
             }
             else if (horizontalInput < 0)
             {
-                anim = weapon.GetComponentInChildren<Animator>();
-                ChangeAnimationState("Grimoire_Side");
-                weapon.transform.localPosition = new Vector3(-2f, 0, 0);
+                if (weapon.transform.childCount > 0)
+                {
+                    anim = weapon.GetComponentInChildren<Animator>();
+                    ChangeAnimationState("Grimoire_Side");
+                    weapon.transform.localPosition = new Vector3(-2f, 0, 0);
+                }
                 averyLeft.SetActive(true);
                 averyRight.SetActive(false);
                 averyFront.SetActive(false);

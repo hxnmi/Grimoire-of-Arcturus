@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [SerializeField] GameObject companion;
     //public float interactionDistance;
 
     public TMPro.TextMeshProUGUI interactionText;
@@ -20,8 +21,13 @@ public class PlayerInteraction : MonoBehaviour
         //cam = GetComponent<Camera>();
     }
 
+
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            companion.GetComponent<CompanionController>().GoTo();
+        }
 
         GameObject objectinteractable = FindClosestInteractable();
 

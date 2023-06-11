@@ -30,7 +30,6 @@ public class EnemyController : MonoBehaviour
 
     void Chase(Transform player)
     {
-        //this.GetComponent<UnityEngine.AI.NavMeshAgent>().Stop();
         this.GetComponent<UnityEngine.AI.NavMeshAgent>().ResetPath();
 
         Vector3 direction = player.position - this.transform.position;
@@ -56,14 +55,13 @@ public class EnemyController : MonoBehaviour
 
     void Investigate()
     {
-        if (transform.position == lastPlaceSeen)
+        if (transform.position.x == lastPlaceSeen.x && transform.position.z == lastPlaceSeen.z)
         {
             curState = State.Patrol;
         }
         else
         {
             this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(lastPlaceSeen);
-            // Debug.Log("Enemy's state: " + curState + " point" + lastPlaceSeen);
         }
     }
 
@@ -73,21 +71,13 @@ public class EnemyController : MonoBehaviour
 
         if (patrolTimePassed > patrolWait)
         {
-            patrolTimePassed = 0; // reset the timer
+            patrolTimePassed = 0;
             Vector3 patrollingPoint = lastPlaceSeen;
 
-            // Generate a random point on the X,Z axis at 'patrolDistance' distance from the lastPlaceSeen position
             patrollingPoint += new Vector3(Random.Range(-patrolDistance, patrolDistance), 0, Random.Range(-patrolDistance, patrolDistance));
 
-            // Make the generated point a goal for the agent           
             this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(patrollingPoint);
         }
-    }
-
-    public void InvestigatePoint(Vector3 point)
-    {
-        lastPlaceSeen = point;
-        curState = State.Investigate;
     }
 
     //IEnumerator PlayKnock()
@@ -121,7 +111,6 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         State tmpstate = curState;
@@ -130,7 +119,6 @@ public class EnemyController : MonoBehaviour
         {
             curState = State.Chase;
             lastPlaceSeen = player.position;
-            //debug.log("i saw the player at " + player.position);
         }
         else
         {
@@ -152,9 +140,6 @@ public class EnemyController : MonoBehaviour
                 Chase(player);
                 break;
         }
-
-        // if (tmpstate != curState)
-        //     Debug.Log("Guard's state: " + curState);
 
     }
 }

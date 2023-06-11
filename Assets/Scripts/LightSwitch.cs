@@ -8,11 +8,6 @@ public class LightSwitch : Interactable
     public Light m_Light; // im using m_Light name since 'light' is already a variable used by unity
     public bool isOn;
 
-    private void Start()
-    {
-        UpdateLight();
-    }
-
     void UpdateLight()
     {
         m_Light.enabled = isOn;
