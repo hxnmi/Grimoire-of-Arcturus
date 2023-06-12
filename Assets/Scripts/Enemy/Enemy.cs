@@ -21,10 +21,14 @@ public class Enemy : MonoBehaviour, IIEnemy
 
     public virtual void Heal(int amount)
     {
+        //effect
+        this.transform.GetChild(1).gameObject.SetActive(true);
         curCol = this.GetComponentInChildren<SpriteRenderer>().color;
         Color newCol = new Color(curCol.r, curCol.g, curCol.b, curCol.a + amount / maxHp);
         this.GetComponentInChildren<SpriteRenderer>().color = newCol;
         Debug.Log("Enemy healed with : " + amount);
+
+
         if (hp < maxHp)
             hp += amount;
         if (hp > maxHp)

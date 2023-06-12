@@ -43,6 +43,8 @@ public class EnemySensor : MonoBehaviour
         else
         {
             //get transform look at from current selected object for aim purposes
+            if (CurrentTargetObject == null)
+                return;
             dummyLookAt.transform.LookAt(CurrentTargetObject.transform);
             enemyAt.transform.position = CurrentTargetObject.transform.position;
             arrow.localEulerAngles = new Vector3(arrow.localEulerAngles.x, dummyLookAt.transform.localEulerAngles.y, arrow.localEulerAngles.z);

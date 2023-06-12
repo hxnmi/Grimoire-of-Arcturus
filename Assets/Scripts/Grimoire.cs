@@ -8,11 +8,16 @@ public class Grimoire : Interactable
 
     void MoveGrimoire()
     {
+        //move to weaponobj
         this.gameObject.transform.SetParent(weapon.transform);
         this.gameObject.transform.localPosition = new Vector3(1f, 1f, 0);
-        this.GetComponent<CapsuleCollider>().enabled = false;
-        Destroy(gameObject.transform.GetChild(0).gameObject);
         weapon.GetComponentInParent<PlayerCombat>().enabled = true;
+
+        //destroy pickup component
+        gameObject.tag = "Untagged";
+        Destroy(gameObject.transform.GetChild(0).gameObject);
+        Destroy(GetComponent<CapsuleCollider>());
+        Destroy(GetComponent<Grimoire>());
     }
 
     public override string GetDescription()

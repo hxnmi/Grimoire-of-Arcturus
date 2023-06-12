@@ -17,7 +17,7 @@ public class Goblin : Enemy
     private void Start()
     {
 
-        hp = 30;
+        hp = 100;
         maxHp = hp;
 
     }
