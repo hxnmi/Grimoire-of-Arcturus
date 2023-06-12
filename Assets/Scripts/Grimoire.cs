@@ -5,6 +5,7 @@ using UnityEngine;
 public class Grimoire : Interactable
 {
     [SerializeField] GameObject weapon;
+    [SerializeField] GameObject reticle;
 
     void MoveGrimoire()
     {
@@ -12,6 +13,7 @@ public class Grimoire : Interactable
         this.gameObject.transform.SetParent(weapon.transform);
         this.gameObject.transform.localPosition = new Vector3(1f, 1f, 0);
         weapon.GetComponentInParent<PlayerCombat>().enabled = true;
+        reticle.SetActive(true);
 
         //destroy pickup component
         gameObject.tag = "Untagged";
