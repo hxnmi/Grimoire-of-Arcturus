@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] GameObject attackRotate;
-
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -32,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput; public float HorizontalInput { get => horizontalInput; }
     float verticalInput; public float VerticalInput { get => verticalInput; }
 
-    Vector3 moveDirection;
+    Vector3 moveDirection; public Vector3 MoveDirection { get => moveDirection; }
 
     public float smooth = 1f;
     private Quaternion targetRotation;
@@ -138,16 +136,8 @@ public class PlayerMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * smooth * Time.deltaTime);
 
-        // EnemyAt Rotation
-        if (horizontalInput != 0 || verticalInput != 0)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(moveDirection);
-            if (!EnemySensor.CurrentTargetObject)
-                attackRotate.transform.rotation = Quaternion.RotateTowards(attackRotate.transform.rotation, toRotation, 1000 * Time.deltaTime);
-        }
-
         // Animation
-        GetComponent<Animation>().Animate();
+        GetComponent<Animation>().PlayerMoveAnimate();
 
     }
 

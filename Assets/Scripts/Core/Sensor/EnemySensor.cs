@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemySensor : MonoBehaviour
 {
     [SerializeField] private BoxOverlapSensor sensor;
-    [SerializeField] private Transform arrow;
     [SerializeField] private GameObject enemyAt;
 
     private EnemySenseFlag state;
@@ -23,7 +22,7 @@ public class EnemySensor : MonoBehaviour
     private void Update()
     {
         sensor.UpdateSensor();
-        arrow.gameObject.SetActive(state == EnemySenseFlag.DETECTED);
+        // arrow.gameObject.SetActive(state == EnemySenseFlag.DETECTED);
 
         //Check if there are'nt detected enemies nearby
         if (!sensor.HasHit || sensor.HitCount < 1)
@@ -46,8 +45,8 @@ public class EnemySensor : MonoBehaviour
             if (CurrentTargetObject == null)
                 return;
             dummyLookAt.transform.LookAt(CurrentTargetObject.transform);
+            // arrow.localEulerAngles = new Vector3(arrow.localEulerAngles.x, dummyLookAt.transform.localEulerAngles.y, arrow.localEulerAngles.z);
             enemyAt.transform.position = CurrentTargetObject.transform.position;
-            arrow.localEulerAngles = new Vector3(arrow.localEulerAngles.x, dummyLookAt.transform.localEulerAngles.y, arrow.localEulerAngles.z);
         }
     }
 }

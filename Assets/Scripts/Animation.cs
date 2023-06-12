@@ -35,7 +35,7 @@ public class Animation : MonoBehaviour
     //     }
     // }
 
-    public void Animate()
+    public void PlayerMoveAnimate()
     {
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
         Rigidbody rb = playerMovement.Rb;
@@ -118,6 +118,47 @@ public class Animation : MonoBehaviour
                 ChangeAnimationState("IdleLeft_player");
         }
     }
+
+    public void PlayerAttackAnimate(int type)
+    {
+        if (anim == averyFront.GetComponent<Animator>())
+        {
+            if (type == 1)
+                anim.SetTrigger("Front");
+            // ChangeAnimationState("AttackFront_player");
+            else if (type == 2)
+                anim.SetTrigger("Front2");
+            // ChangeAnimationState("AttackFront2_player");
+        }
+        else if (anim == averyBack.GetComponent<Animator>())
+        {
+            if (type == 1)
+                anim.SetTrigger("Back");
+            // ChangeAnimationState("AttackBack_player");
+            else if (type == 2)
+                anim.SetTrigger("Back2");
+            // ChangeAnimationState("AttackBack2_player");
+        }
+        else if (anim == averyRight.GetComponent<Animator>())
+        {
+            if (type == 1)
+                anim.SetTrigger("Right");
+            // ChangeAnimationState("AttackRight_player");
+            else if (type == 2)
+                anim.SetTrigger("Right2");
+            // ChangeAnimationState("AttackRight2_player");
+        }
+        else if (anim == averyLeft.GetComponent<Animator>())
+        {
+            if (type == 1)
+                anim.SetTrigger("Left");
+            // ChangeAnimationState("AttackLeft_player");
+            else if (type == 2)
+                anim.SetTrigger("Left2");
+            // ChangeAnimationState("AttackLeft2_player");
+        }
+    }
+
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
