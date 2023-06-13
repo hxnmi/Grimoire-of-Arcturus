@@ -58,7 +58,6 @@ public class Grid : MonoBehaviour
         DrawWaterMeshColldier(grid);
         DrawTerrainMesh(grid);
         DrawEdgeMesh(grid);
-        DrawTexture(grid);
         GenerateTrees(grid);
 
         this.transform.GetChild(0).gameObject.SetActive(true);
@@ -101,13 +100,21 @@ public class Grid : MonoBehaviour
         mesh.uv = uvs.ToArray();
         mesh.RecalculateNormals();
 
-        MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
+        GameObject groundObj = new GameObject("Ground");
+        groundObj.transform.SetParent(transform);
+
+        MeshFilter meshFilter = groundObj.AddComponent<MeshFilter>();
         meshFilter.mesh = mesh;
 
-        MeshCollider meshCollider = gameObject.AddComponent<MeshCollider>();
+        MeshRenderer meshRenderer = groundObj.AddComponent<MeshRenderer>();
+
+        MeshCollider meshCollider = groundObj.AddComponent<MeshCollider>();
         meshCollider.sharedMesh = mesh;
 
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        groundObj.tag = "Ground";
+        groundObj.layer = 6;
+
+        DrawTexture(grid, groundObj);
     }
 
     void DrawWaterMeshColldier(Cell[,] grid)
@@ -147,10 +154,16 @@ public class Grid : MonoBehaviour
         mesh.uv = uvs.ToArray();
         mesh.RecalculateNormals();
 
-        MeshCollider meshCollider = gameObject.AddComponent<MeshCollider>();
+        GameObject waterObj = new GameObject("Watered");
+        waterObj.transform.SetParent(transform);
+
+        MeshFilter meshFilter = waterObj.AddComponent<MeshFilter>();
+        meshFilter.mesh = mesh;
+
+        MeshCollider meshCollider = waterObj.AddComponent<MeshCollider>();
         meshCollider.sharedMesh = mesh;
-        meshCollider.convex = true;
-        meshCollider.isTrigger = true;
+
+        waterObj.AddComponent<CollisionCheck>();
     }
 
     void DrawEdgeMesh(Cell[,] grid)
@@ -250,7 +263,7 @@ public class Grid : MonoBehaviour
         meshRenderer.material = edgeMaterial;
     }
 
-    void DrawTexture(Cell[,] grid)
+    void DrawTexture(Cell[,] grid, GameObject groundObj)
     {
         Texture2D texture = new Texture2D(size, size);
         Color[] colorMap = new Color[size * size];
@@ -269,7 +282,7 @@ public class Grid : MonoBehaviour
         texture.SetPixels(colorMap);
         texture.Apply();
 
-        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        MeshRenderer meshRenderer = groundObj.GetComponent<MeshRenderer>();
         meshRenderer.material = terrainMaterial;
         meshRenderer.material.mainTexture = texture;
         meshRenderer.material = groundMaterial;

@@ -14,9 +14,7 @@ public class TriggerCheck : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
             rend.enabled = true;
-        }
     }
 
     private void OnTriggerExit()

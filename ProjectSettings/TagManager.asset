@@ -7,6 +7,8 @@ TagManager:
   - Interactable
   - Enemy
   - Selectable
+  - Water
+  - Ground
   layers:
   - Default
   - TransparentFX
