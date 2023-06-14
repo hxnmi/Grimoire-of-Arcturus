@@ -18,17 +18,29 @@ public class ObeliskSide : Interactable
         if (floatingtext.text == "fecel")
         {
             panel.transform.GetChild(0).gameObject.SetActive(true);
+            panel.transform.GetChild(1).gameObject.SetActive(false);
+            panel.transform.GetChild(2).gameObject.SetActive(false);
+            panel.transform.GetChild(3).gameObject.SetActive(false);
         }
         else if (floatingtext.text == "lemienne")
         {
+            panel.transform.GetChild(0).gameObject.SetActive(false);
             panel.transform.GetChild(1).gameObject.SetActive(true);
+            panel.transform.GetChild(2).gameObject.SetActive(false);
+            panel.transform.GetChild(3).gameObject.SetActive(false);
         }
         else if (floatingtext.text == "phei")
         {
+            panel.transform.GetChild(0).gameObject.SetActive(false);
+            panel.transform.GetChild(1).gameObject.SetActive(false);
             panel.transform.GetChild(2).gameObject.SetActive(true);
+            panel.transform.GetChild(3).gameObject.SetActive(false);
         }
         else if (floatingtext.text == "seire")
         {
+            panel.transform.GetChild(0).gameObject.SetActive(false);
+            panel.transform.GetChild(1).gameObject.SetActive(false);
+            panel.transform.GetChild(2).gameObject.SetActive(false);
             panel.transform.GetChild(3).gameObject.SetActive(true);
         }
 
