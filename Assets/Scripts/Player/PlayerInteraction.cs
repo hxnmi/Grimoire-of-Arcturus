@@ -20,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     public float fovDist = 40.0f;
     public float fovAngle = 360f;
     Transform selectionObj;
+    GameObject objectinteractable; public GameObject Objectinteractable { get => objectinteractable; }
 
     void Start()
     {
@@ -49,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
 
         }
 
-        GameObject objectinteractable = FindClosestInteractable();
+        objectinteractable = FindClosestInteractable();
 
         Vector3 direction = objectinteractable.transform.position - this.transform.position;
         float angle = Vector3.Angle(direction, this.transform.forward);

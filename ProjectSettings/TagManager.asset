@@ -6,10 +6,11 @@ TagManager:
   tags:
   - Interactable
   - Enemy
-  - Selectable
   - Water
   - Ground
   - Plane
+  - EnemySpawner
+  - Companion
   layers:
   - Default
   - TransparentFX
