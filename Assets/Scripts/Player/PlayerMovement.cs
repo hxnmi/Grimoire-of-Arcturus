@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         air
     }
     [SerializeField] GameObject minigamePanel;
+    [SerializeField] GameObject gameController;
 
     private void Start()
     {
@@ -147,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * smooth * Time.deltaTime);
 
         // Animation
-        GetComponent<Animation>().PlayerMoveAnimate();
+        gameController.GetComponent<Animation>().PlayerMoveAnimate();
 
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject[] enemyPrefab;
     private float Timer;
     [SerializeField] float maxTime;
 
@@ -14,7 +14,8 @@ public class SpawnEnemy : MonoBehaviour
         if (Timer >= maxTime)
         {
             Vector3 randomSpawnPos = new Vector3(Random.Range(30, 70), 1, Random.Range(30, 70));
-            Instantiate(enemyPrefab, randomSpawnPos, Quaternion.identity);
+            for (int i = 0; i < enemyPrefab.Length; i++)
+                Instantiate(enemyPrefab[i], randomSpawnPos, Quaternion.identity);
             Timer = 0f;
             maxTime += 1;
         }

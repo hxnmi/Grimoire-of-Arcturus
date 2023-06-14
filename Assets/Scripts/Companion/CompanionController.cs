@@ -99,7 +99,7 @@ public class CompanionController : MonoBehaviour
         Vector3 direction = player.position - this.transform.position;
         float angle = Vector3.Angle(direction, this.transform.forward);
 
-        Debug.DrawRay(this.transform.position, direction, Color.green);
+        Debug.DrawRay(this.transform.position, direction, Color.blue);
 
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, direction, out hit) && direction.magnitude < fovDist && angle < fovAngle)
@@ -120,6 +120,8 @@ public class CompanionController : MonoBehaviour
     void Update()
     {
         State tmpstate = curState;
+
+        GameObject.FindWithTag("GameController").GetComponent<Animation>().CompanionMoveAnimate();
 
         if (ICanSee(player))
         {

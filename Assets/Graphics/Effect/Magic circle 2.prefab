@@ -14670,6 +14670,7 @@ GameObject:
   - component: {fileID: 3423388300971593625}
   - component: {fileID: 1601506141239540749}
   - component: {fileID: 5574110145886096913}
+  - component: {fileID: 6704283605764076763}
   m_Layer: 0
   m_Name: Magic circle 2
   m_TagString: Untagged
@@ -19533,6 +19534,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!210 &6704283605764076763
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3377181292992421420}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &8598798586939600705
 GameObject:
   m_ObjectHideFlags: 0

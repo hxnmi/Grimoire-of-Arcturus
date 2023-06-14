@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6915187596130686655}
   - component: {fileID: 78219626252470889}
   - component: {fileID: 861759993}
+  - component: {fileID: 1948098877}
   m_Layer: 6
   m_Name: obelisk_main
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2213590ad2547fe45b2cd44e76abbef0, type: 2}
+  - {fileID: 2100000, guid: 0d5eb6bb7ada7e045a857384777f2ec0, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,6 +100,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1296040800289190018, guid: d14a111d70c723e47a898a192b6f6fd0, type: 3}
+--- !u!114 &1948098877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311676343227389607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fc2c7df419c854b8409e40fe7b1943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionType: 0
+  gridDystopian: {fileID: 0}
+  gridRestoration: {fileID: 0}
 --- !u!1 &5382563750134495710
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +164,7 @@ GameObject:
   - component: {fileID: 3269811275757505606}
   - component: {fileID: 1373311521017628670}
   - component: {fileID: 1029948260}
+  - component: {fileID: 1999211745}
   m_Layer: 6
   m_Name: obelisk_plate
   m_TagString: Untagged
@@ -233,6 +251,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5960382256196242765, guid: d14a111d70c723e47a898a192b6f6fd0, type: 3}
+--- !u!114 &1999211745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136755298074178545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65c3a8912ec36a4ca05320d2ead000c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  companion: {fileID: 0}
 --- !u!1001 &4243970271982281667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244,6 +275,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4719053416505348626, guid: 2bfdf71a47491af469fa763b385bb337, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 05912a35b73707042a665ab6cea68e79, type: 2}
     - target: {fileID: 5493111001205358525, guid: 2bfdf71a47491af469fa763b385bb337, type: 3}
       propertyPath: m_Name
       value: obelisk_side (3)
@@ -312,7 +347,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1575125767965487140, guid: 2bfdf71a47491af469fa763b385bb337, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2bfdf71a47491af469fa763b385bb337, type: 3}
 --- !u!1 &2940533159424196607 stripped
 GameObject:
@@ -436,7 +472,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2723064311474074959, guid: 6c61159e24899174ea66b5e6c7cdaef1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c61159e24899174ea66b5e6c7cdaef1, type: 3}
 --- !u!1 &2322399259186639777 stripped
 GameObject:
@@ -496,6 +533,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1088967055760615211, guid: ef376ea907ef7694690513ffd84ee8f3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5661fa165639aa54485d8f67a5df4c62, type: 2}
     - target: {fileID: 1835486549207605531, guid: ef376ea907ef7694690513ffd84ee8f3, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -560,7 +601,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8112582100588937901, guid: ef376ea907ef7694690513ffd84ee8f3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ef376ea907ef7694690513ffd84ee8f3, type: 3}
 --- !u!4 &1823879882989962138 stripped
 Transform:
@@ -612,6 +654,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4753942597676393316}
     m_Modifications:
+    - target: {fileID: 3080301079013368988, guid: 1bc7c0f0684195b439326699738d4ccf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b89fede5361c9754b9327ecd301b0159, type: 2}
     - target: {fileID: 4700581634708973653, guid: 1bc7c0f0684195b439326699738d4ccf, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -684,7 +730,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7713318258047319684, guid: 1bc7c0f0684195b439326699738d4ccf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1bc7c0f0684195b439326699738d4ccf, type: 3}
 --- !u!1 &188531109817128619 stripped
 GameObject:

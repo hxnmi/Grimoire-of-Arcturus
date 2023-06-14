@@ -28,7 +28,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void BasicAttack()
     {
-        GetComponent<Animation>().PlayerAttackAnimate(1);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<Animation>().PlayerAttackAnimate(1);
         StartCoroutine(waitDisableKinematic(0.2f, true));
         StartCoroutine(waitDisableKinematic(1f, false));
         if (EnemySensor.CurrentTargetObject)
@@ -45,7 +45,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void HoldAttack()
     {
-        GetComponent<Animation>().PlayerAttackAnimate(2);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<Animation>().PlayerAttackAnimate(2);
         StartCoroutine(waitDisableKinematic(0.2f, true));
         StartCoroutine(waitDisableKinematic(3f, false));
         if (EnemySensor.CurrentTargetObject)

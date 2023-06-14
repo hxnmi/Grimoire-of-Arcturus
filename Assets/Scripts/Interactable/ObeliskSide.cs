@@ -51,13 +51,14 @@ public class ObeliskSide : Interactable
         }
         spawner.GetComponent<SpawnEnemy>().enabled = false;
         player.GetComponent<Rigidbody>().isKinematic = true;
+        player.GetComponent<PlayerCombat>().enabled = false;
         companion.GetComponent<NavMeshAgent>().enabled = false;
         companion.GetComponent<CompanionController>().enabled = false;
     }
 
     public override string GetDescription()
     {
-        return "Press [F] to interact Obelisk .";
+        return "Press [F] to interact Obelisk.";
     }
 
     public override void Interact()

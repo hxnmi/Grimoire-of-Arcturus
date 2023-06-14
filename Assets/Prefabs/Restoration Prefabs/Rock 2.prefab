@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7453009377007996673}
   - component: {fileID: 2653937359909995995}
   - component: {fileID: -104089870501947024}
+  - component: {fileID: -2900953401963052446}
   m_Layer: 0
   m_Name: Rock 2
   m_TagString: Untagged
@@ -97,3 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &-2900953401963052446
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587861520191827857}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

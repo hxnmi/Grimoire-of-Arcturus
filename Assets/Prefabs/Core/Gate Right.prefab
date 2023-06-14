@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4302427041110830627}
   - component: {fileID: 4302427041110830624}
+  - component: {fileID: -3301406808892225579}
   m_Layer: 0
   m_Name: Gate Right
   m_TagString: Untagged
@@ -47,6 +48,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hinge: {fileID: 4302427042063311804}
   spriteRenderer: {fileID: 4302427041840265639}
+--- !u!210 &-3301406808892225579
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302427041110830626}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &4302427041840265633
 GameObject:
   m_ObjectHideFlags: 0

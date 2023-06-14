@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 607847153598072607}
   - component: {fileID: 6718612581343071206}
   - component: {fileID: -7042677458342790075}
+  - component: {fileID: -8470182867878487416}
   m_Layer: 0
   m_Name: Rock 6
   m_TagString: Untagged
@@ -97,3 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &-8470182867878487416
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6687924830398608590}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

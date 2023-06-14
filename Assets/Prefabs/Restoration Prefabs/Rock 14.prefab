@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2687220672486774141}
   - component: {fileID: 2203000550060517399}
   - component: {fileID: -8460668980543579804}
+  - component: {fileID: 2071282628857521965}
   m_Layer: 0
   m_Name: Rock 14
   m_TagString: Untagged
@@ -97,3 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &2071282628857521965
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462613578582506501}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

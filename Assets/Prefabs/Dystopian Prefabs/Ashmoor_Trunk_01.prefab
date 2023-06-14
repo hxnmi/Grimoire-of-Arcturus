@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7774856817539100834}
   - component: {fileID: -7382271455170975125}
   - component: {fileID: -1808582416354685393}
+  - component: {fileID: -4511836571677129099}
   m_Layer: 0
   m_Name: Ashmoor_Trunk_01
   m_TagString: Untagged
@@ -111,3 +112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &-4511836571677129099
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134956015014547831}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7321231504983880465}
   - component: {fileID: 7321231504983880463}
   - component: {fileID: 2117154729}
+  - component: {fileID: -5580373478705698464}
   m_Layer: 0
   m_Name: Fence Right
   m_TagString: Untagged
@@ -63,6 +64,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.996833, y: 5.297399, z: 0.27229977}
   m_Center: {x: 3.43, y: 2.61, z: 0.01748239}
+--- !u!210 &-5580373478705698464
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321231504983880462}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &7321231505784342808
 GameObject:
   m_ObjectHideFlags: 0

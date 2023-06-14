@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4128612793675879167}
   - component: {fileID: 4883139475895615864}
   - component: {fileID: -5120200066021223606}
+  - component: {fileID: 912966118344736351}
   m_Layer: 0
   m_Name: Plant 12 Tropic
   m_TagString: Untagged
@@ -114,3 +115,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &912966118344736351
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883139475895615867}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

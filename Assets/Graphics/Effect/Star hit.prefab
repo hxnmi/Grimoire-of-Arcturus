@@ -9760,6 +9760,7 @@ GameObject:
   - component: {fileID: 328558227413381630}
   - component: {fileID: 2319384772025575332}
   - component: {fileID: 6299362341641363023}
+  - component: {fileID: -205549306142957867}
   m_Layer: 0
   m_Name: Star hit
   m_TagString: Untagged
@@ -14631,6 +14632,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!210 &-205549306142957867
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535006216103734310}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &7851872916918845318
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,10 +13,6 @@ public class Switch : MonoBehaviour
     {
         on.SetActive(isOn);
         up.SetActive(isUp);
-        if (isOn)
-        {
-
-        }
     }
 
     // Update is called once per frame

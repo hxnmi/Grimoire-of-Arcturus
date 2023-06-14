@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2060940304285192478}
   - component: {fileID: 7989763722736560164}
   - component: {fileID: 2309576645463018713}
+  - component: {fileID: 672852344886876166}
   m_Layer: 0
   m_Name: right-bone-v2
   m_TagString: Untagged
@@ -58,6 +59,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &672852344886876166
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060940304285192928}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &5952728123813948637
 GameObject:
   m_ObjectHideFlags: 0

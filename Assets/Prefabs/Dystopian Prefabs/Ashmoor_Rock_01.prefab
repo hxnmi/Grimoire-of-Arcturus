@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -4595276361678217093}
   - component: {fileID: 4566122094677234507}
   - component: {fileID: -2036449251979753002}
+  - component: {fileID: 6224316221087101922}
   m_Layer: 0
   m_Name: Ashmoor_Rock_01
   m_TagString: Untagged
@@ -104,6 +105,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &6224316221087101922
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444006440367873560}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &3042751756660784882
 GameObject:
   m_ObjectHideFlags: 0

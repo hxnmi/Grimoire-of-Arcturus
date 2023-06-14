@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class ObeliskTower : Interactable
 {
-	void InteractObelisk()
-	{
-		// set active minigame
-		
-	}
+    [SerializeField] GameObject gridDystopian;
+    [SerializeField] GameObject gridRestoration;
+    void InteractObelisk()
+    {
+        gridDystopian.SetActive(false);
+        gridRestoration.SetActive(true);
+    }
 
-	public override string GetDescription()
-	{
-		return "Press [F] to interact Obelisk .";
-	}
+    public override string GetDescription()
+    {
+        return "Press [F] to interact Obelisk Tower.";
+    }
 
-	public override void Interact()
-	{
-		InteractObelisk();
-	}
+    public override void Interact()
+    {
+        InteractObelisk();
+    }
 }

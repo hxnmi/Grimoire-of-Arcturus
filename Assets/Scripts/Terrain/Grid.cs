@@ -154,6 +154,7 @@ public class Grid : MonoBehaviour
 
         GameObject waterObj = new GameObject("WaterCollider");
         waterObj.transform.SetParent(transform);
+        waterObj.transform.localPosition = new Vector3(0, -0.01f, 0);
 
         MeshFilter meshFilter = waterObj.AddComponent<MeshFilter>();
         meshFilter.mesh = mesh;
@@ -289,7 +290,7 @@ public class Grid : MonoBehaviour
     void GenerateTrees(Cell[,] grid)
     {
         float[,] noiseMap = new float[size, size];
-        (float xOffset, float yOffset) = (Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
+        (float xOffset, float yOffset) = (Random.Range(150f, 150f), Random.Range(150f, 150f));
         for (int y = 0; y < size; y++)
         {
             for (int x = 0; x < size; x++)

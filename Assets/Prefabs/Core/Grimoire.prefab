@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 6791785241200902669}
   - component: {fileID: 6791785241200902668}
   - component: {fileID: 6791785241200902671}
+  - component: {fileID: 2002249707}
   m_Layer: 0
   m_Name: Grimoire
   m_TagString: Interactable
@@ -275,3 +276,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &2002249707
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791785241200902665}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

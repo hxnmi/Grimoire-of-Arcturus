@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Animation : MonoBehaviour
 {
@@ -9,35 +11,28 @@ public class Animation : MonoBehaviour
     [SerializeField] GameObject averyLeft;
     [SerializeField] GameObject averyBack;
     [SerializeField] GameObject grimoire;
-
-    GameObject player;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject companion;
+    [SerializeField] GameObject[] enemy;
 
     GameObject weapon;
-
     Animator anim;
+    Animator anim2;
+    Animator anim3;
+    Animator anim4;
+    Animator anim5;
     string currentState;
     bool walk;
 
     [System.Obsolete]
     private void Start()
     {
-        player = GameObject.Find("Player");
         weapon = player.transform.FindChild("WeaponObj").gameObject;
     }
-    // void Update()
-    // {
-    //     if (weapon.transform.childCount > 0)
-    //         return;
-    //     else
-    //     {
-    //         anim = grimoire.GetComponent<Animator>();
-    //         ChangeAnimationState("Grimoire_Back");
-    //     }
-    // }
 
     public void PlayerMoveAnimate()
     {
-        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         Rigidbody rb = playerMovement.Rb;
         float horizontalInput = playerMovement.HorizontalInput;
         float verticalInput = playerMovement.VerticalInput;
@@ -159,11 +154,127 @@ public class Animation : MonoBehaviour
         }
     }
 
+    public void CompanionMoveAnimate()
+    {
+        var speed = companion.GetComponent<NavMeshAgent>().velocity.magnitude;
+        var movementDirection = companion.GetComponent<NavMeshAgent>().velocity.normalized;
+        anim2 = companion.transform.GetChild(0).GetComponent<Animator>();
+        SpriteRenderer spriteRenderer = companion.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        if (speed < 0.2f)
+        {
+            ChangeAnimationState2("Idle_Companion");
+        }
+        else
+        {
+            ChangeAnimationState2("Walk_Companion");
+            if (movementDirection.x > 0)
+                spriteRenderer.flipX = false;
+            else if (movementDirection.x < 0)
+                spriteRenderer.flipX = true;
+        }
+    }
+
+    public void BReaperMoveAnimate(Vector3 direction)
+    {
+        direction.Normalize();
+        var speed = enemy[0].GetComponent<NavMeshAgent>().velocity.magnitude;
+        var movementDirection = enemy[0].GetComponent<NavMeshAgent>().velocity.normalized;
+        anim3 = enemy[0].transform.GetChild(0).GetComponent<Animator>();
+        SpriteRenderer spriteRenderer = enemy[0].transform.GetChild(0).GetComponent<SpriteRenderer>();
+        if (speed < 0.2f)
+        {
+            ChangeAnimationState3("Idle_BlueReaper");
+        }
+        else
+        {
+            ChangeAnimationState3("Walk_BlueReaper");
+            if (movementDirection.x > 0 || direction.x > 0)
+                spriteRenderer.flipX = false;
+            else if (movementDirection.x < 0 || direction.x < 0)
+                spriteRenderer.flipX = true;
+        }
+    }
+
+    public void CReaperMoveAnimate(Vector3 direction)
+    {
+        direction.Normalize();
+        var speed = enemy[1].GetComponent<NavMeshAgent>().velocity.magnitude;
+        var movementDirection = enemy[1].GetComponent<NavMeshAgent>().velocity.normalized;
+        anim4 = enemy[1].transform.GetChild(0).GetComponent<Animator>();
+        SpriteRenderer spriteRenderer = enemy[1].transform.GetChild(0).GetComponent<SpriteRenderer>();
+        if (speed < 0.2f)
+        {
+            ChangeAnimationState4("Idle_CaveReaper");
+        }
+        else
+        {
+            ChangeAnimationState4("Walk_CaveReaper");
+            if (movementDirection.x > 0 || direction.x > 0)
+                spriteRenderer.flipX = false;
+            else if (movementDirection.x < 0 || direction.x < 0)
+                spriteRenderer.flipX = true;
+        }
+    }
+
+    public void GReaperMoveAnimate(Vector3 direction)
+    {
+        direction.Normalize();
+        var speed = enemy[2].GetComponent<NavMeshAgent>().velocity.magnitude;
+        var movementDirection = enemy[2].GetComponent<NavMeshAgent>().velocity.normalized;
+        anim5 = enemy[2].transform.GetChild(0).GetComponent<Animator>();
+        SpriteRenderer spriteRenderer = enemy[2].transform.GetChild(0).GetComponent<SpriteRenderer>();
+        if (speed < 0.2f)
+        {
+            ChangeAnimationState5("Idle_GreenReaper");
+        }
+        else
+        {
+            ChangeAnimationState5("Walk_GreenReaper");
+            if (movementDirection.x > 0 || direction.x > 0)
+                spriteRenderer.flipX = false;
+            else if (movementDirection.x < 0 || direction.x < 0)
+                spriteRenderer.flipX = true;
+        }
+    }
+
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
 
         anim.Play(newState);
+
+        currentState = newState;
+    }
+
+    void ChangeAnimationState2(string newState)
+    {
+        if (currentState == newState) return;
+
+        anim2.Play(newState);
+
+        currentState = newState;
+    }
+    void ChangeAnimationState3(string newState)
+    {
+        if (currentState == newState) return;
+
+        anim3.Play(newState);
+
+        currentState = newState;
+    }
+    void ChangeAnimationState4(string newState)
+    {
+        if (currentState == newState) return;
+
+        anim4.Play(newState);
+
+        currentState = newState;
+    }
+    void ChangeAnimationState5(string newState)
+    {
+        if (currentState == newState) return;
+
+        anim5.Play(newState);
 
         currentState = newState;
     }

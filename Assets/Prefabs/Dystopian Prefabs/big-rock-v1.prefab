@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8587665340002717285}
   - component: {fileID: -6438233884106263800}
+  - component: {fileID: 4385240975457828347}
   m_Layer: 0
   m_Name: big-rock-v1
   m_TagString: Untagged
@@ -129,3 +130,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &4385240975457828347
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8587665340002717287}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

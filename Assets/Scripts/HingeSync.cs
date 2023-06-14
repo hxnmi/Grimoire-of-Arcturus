@@ -2,31 +2,31 @@
 
 public class HingeSync : MonoBehaviour
 {
-  #region Connstants
+    #region Connstants
 
-  private static readonly int ANGLE = Shader.PropertyToID("_Angle");
+    private static readonly int ANGLE = Shader.PropertyToID("_Angle");
 
-  #endregion
-
-
-  #region Inspector
-
-  [SerializeField]
-  private HingeJoint hinge = null;
-
-  [SerializeField]
-  private SpriteRenderer spriteRenderer = null;
-
-  #endregion
+    #endregion
 
 
-  #region MonoBehaviour
+    #region Inspector
 
-  private void Update ()
-  {
-    float angle = -hinge.angle;
-    spriteRenderer.material.SetFloat(ANGLE, angle);
-  }
+    [SerializeField]
+    private HingeJoint hinge = null;
 
-  #endregion
+    [SerializeField]
+    private SpriteRenderer spriteRenderer = null;
+
+    #endregion
+
+
+    #region MonoBehaviour
+
+    private void Update()
+    {
+        float angle = -hinge.angle;
+        spriteRenderer.material.SetFloat(ANGLE, angle);
+    }
+
+    #endregion
 }

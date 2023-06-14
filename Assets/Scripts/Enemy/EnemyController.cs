@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
 
     // Last place the player was seen 
     Vector3 lastPlaceSeen;
+    public Vector3 direction;
 
     // Chasing settings
     public float chasingSpeed = 4.0f;
@@ -32,7 +33,7 @@ public class EnemyController : MonoBehaviour
     {
         this.GetComponent<UnityEngine.AI.NavMeshAgent>().ResetPath();
 
-        Vector3 direction = player.position - this.transform.position;
+        direction = player.position - this.transform.position;
 
         Rigidbody rbplayer = player.GetComponent<Rigidbody>();
 
@@ -90,7 +91,7 @@ public class EnemyController : MonoBehaviour
 
     bool ICanSee(Transform player)
     {
-        Vector3 direction = player.position - this.transform.position;
+        direction = player.position - this.transform.position;
         float angle = Vector3.Angle(direction, this.transform.forward);
 
         Debug.DrawRay(this.transform.position, direction, Color.green);
@@ -114,6 +115,8 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         State tmpstate = curState;
+
+        GameObject.FindWithTag("GameController").GetComponent<Animation>().CompanionMoveAnimate();
 
         if (ICanSee(player))
         {
