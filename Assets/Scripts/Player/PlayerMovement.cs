@@ -6,44 +6,46 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    private float moveSpeed;
-    public float walkSpeed;
+    float moveSpeed;
+    [SerializeField] float walkSpeed;
 
-    public float groundDrag;
+    [SerializeField] float groundDrag;
 
     [Header("Jumping")]
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
+    [SerializeField] float jumpForce;
+    [SerializeField] float jumpCooldown;
+    [SerializeField] float airMultiplier;
     bool readyToJump;
 
     [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode jumpKey = KeyCode.Space;
 
     [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask whatIsGround;
+    [SerializeField] float playerHeight;
+    [SerializeField] LayerMask whatIsGround;
     bool grounded;
 
-    public Transform orientation;
+    [SerializeField] Transform orientation;
 
     float horizontalInput; public float HorizontalInput { get => horizontalInput; }
     float verticalInput; public float VerticalInput { get => verticalInput; }
 
     Vector3 moveDirection; public Vector3 MoveDirection { get => moveDirection; }
 
-    public float smooth = 1f;
-    private Quaternion targetRotation;
+    [SerializeField] float smooth = 1f;
+    Quaternion targetRotation;
 
     Rigidbody rb; public Rigidbody Rb { get => rb; }
 
-    public MovementState state;
+    [SerializeField] MovementState state;
 
-    public enum MovementState
+    [SerializeField]
+    enum MovementState
     {
         walking,
         air
     }
+    [SerializeField] GameObject minigamePanel;
 
     private void Start()
     {
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (Input.GetKey(KeyCode.LeftAlt) || minigamePanel.activeSelf)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

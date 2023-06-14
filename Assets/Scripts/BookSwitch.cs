@@ -5,21 +5,38 @@ using UnityEngine;
 public class BookSwitch : MonoBehaviour
 {
     [SerializeField] GameObject[] theBook;
-    public void SwitchOn()
+
+    bool[] isActive = new bool[3]; public bool[] IsActive { get => isActive; }
+
+    private void Switching()
     {
         for (int i = 0; i < theBook.Length; i++)
         {
-            // if (theBook[i].transform.GetChild(1).gameObject.activeSelf)
-            //     theBook[i].isActive = true;
+            if (theBook[i].transform.GetChild(1).gameObject.activeSelf)
+            {
+                isActive[i] = true;
+            }
+
+            else
+            {
+                isActive[i] = false;
+            }
+
         }
     }
 
-    public void SwitchOff()
-    {
-        for (int i = 0; i < theBook.Length; i++)
-        {
-            // if (theBook[i].transform.GetChild(0).gameObject.activeSelf)
-            //     theBook[i].isActive = false;
-        }
-    }
+    // private void SwitchOff()
+    // {
+    //     for (int i = 0; i < theBook.Length; i++)
+    //     {
+    //         if (theBook[i].transform.GetChild(0).gameObject.activeSelf)
+    //             isActive[i] = false;
+    //     }
+    // }
+
+    // public void Switching()
+    // {
+    //     SwitchOn();
+    // 	SwitchOff();
+    // }
 }

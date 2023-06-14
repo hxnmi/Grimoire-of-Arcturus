@@ -5,29 +5,32 @@ using UnityEngine.UI;
 
 public class UISpriteAnimation : MonoBehaviour
 {
-    [SerializeField] GameObject theBook;
-    [SerializeField] GameObject theOn;
-    [SerializeField] GameObject theUp;
-    public Image m_Image;
+    [SerializeField] GameObject minigame;
+    [SerializeField] GameObject[] theOn;
+    [SerializeField] GameObject[] theUp;
+    public Image[] m_Image;
     public Sprite[] m_SpriteArray;
     public float m_Speed = .02f;
     private int m_IndexSprite;
     Coroutine m_CorotineAnim;
+    bool[] isActive;
 
-    public void Update()
+    private void Update()
     {
-        // if (theBook.isActive == true)
-        // {
-        //     theUp.SetActive(false);
-        //     theOn.SetActive(true);
-        //     StartCoroutine(Func_PlayAnimUI());
-        // }
-        // else
-        // {
-        //     StopCoroutine(Func_PlayAnimUI());
-        //     theUp.SetActive(true);
-        //     theOn.SetActive(false);
-        // }
+        isActive = minigame.GetComponent<BookSwitch>().IsActive;
+        for (int i = 0; i < isActive.Length; i++)
+            if (isActive[i] == true)
+            {
+                theUp[i].SetActive(false);
+                theOn[i].SetActive(true);
+                StartCoroutine(Func_PlayAnimUI());
+            }
+            else
+            {
+                StopCoroutine(Func_PlayAnimUI());
+                theUp[i].SetActive(true);
+                theOn[i].SetActive(false);
+            }
     }
 
     IEnumerator Func_PlayAnimUI()
@@ -39,7 +42,8 @@ public class UISpriteAnimation : MonoBehaviour
             m_IndexSprite = 0;
         }
 
-        m_Image.sprite = m_SpriteArray[m_IndexSprite];
+        for (int i = 0; i < isActive.Length; i++)
+            m_Image[i].sprite = m_SpriteArray[m_IndexSprite];
 
         m_IndexSprite += 1;
 
