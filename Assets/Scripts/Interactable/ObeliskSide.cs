@@ -8,19 +8,37 @@ public class ObeliskSide : Interactable
     [SerializeField] GameObject panel;
     void InteractObelisk()
     {
-        panel.transform.GetChild(0).gameObject.GetComponent<BookSwitch>().RandomSwitch();
-        panel.SetActive(true);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject companion = GameObject.FindGameObjectWithTag("Companion");
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject spawner = GameObject.FindGameObjectWithTag("EnemySpawner");
+
+        panel.SetActive(true);
+        var floatingtext = gameObject.transform.GetChild(0).GetComponent<TextMesh>();
+        if (floatingtext.text == "fecel")
+        {
+            panel.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else if (floatingtext.text == "lemienne")
+        {
+            panel.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else if (floatingtext.text == "phei")
+        {
+            panel.transform.GetChild(2).gameObject.SetActive(true);
+        }
+        else if (floatingtext.text == "seire")
+        {
+            panel.transform.GetChild(3).gameObject.SetActive(true);
+        }
+
         foreach (GameObject go in gos)
         {
             go.GetComponent<NavMeshAgent>().enabled = false;
             go.GetComponent<EnemyController>().enabled = false;
         }
-        GameObject spawner = GameObject.FindGameObjectWithTag("Enemy");
-        spawner.SetActive(false);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        spawner.GetComponent<SpawnEnemy>().enabled = false;
         player.GetComponent<Rigidbody>().isKinematic = true;
-        GameObject companion = GameObject.FindGameObjectWithTag("Companion");
         companion.GetComponent<NavMeshAgent>().enabled = false;
         companion.GetComponent<CompanionController>().enabled = false;
     }
