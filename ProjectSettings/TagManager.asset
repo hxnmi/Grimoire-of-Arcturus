@@ -9,6 +9,7 @@ TagManager:
   - Selectable
   - Water
   - Ground
+  - Plane
   layers:
   - Default
   - TransparentFX

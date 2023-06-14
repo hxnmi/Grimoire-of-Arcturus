@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] Material highlightMaterial;
-    [SerializeField] Material defaultMaterial;
+    [SerializeField] Material spriteHighlightMat;
+    [SerializeField] Material spriteDefaultMat;
+
+    [SerializeField] Material meshHighlightMat;
 
     //public float interactionDistance;
 
@@ -16,7 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     //public Transform button;
     //bool triggering = false;
     public float fovDist = 40.0f;
-    public float fovAngle = 45.0f;
+    public float fovAngle = 360f;
     Transform selectionObj;
 
     void Start()
@@ -30,9 +32,21 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (selectionObj != null)
         {
-            var selectionRenderer = selectionObj.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
-            selectionObj = null;
+            var spriteRenderer = selectionObj.GetComponent<SpriteRenderer>();
+            var meshRendererToUse = selectionObj.GetComponent<MeshRenderer>();
+
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.material = spriteDefaultMat;
+                selectionObj = null;
+            }
+            else if (meshRendererToUse != null)
+            {
+                Material[] materials = meshRendererToUse.materials;
+                materials[1] = null;
+                meshRendererToUse.materials = materials;
+            }
+
         }
 
         GameObject objectinteractable = FindClosestInteractable();
@@ -58,11 +72,18 @@ public class PlayerInteraction : MonoBehaviour
                 //interactionHoldGO.SetActive(interactable.interactionType == Interactable.InteractionType.Hold);
             }
 
-            var selectionRenderer = objectinteractable.GetComponent<Renderer>();
+            var spriteRenderer = objectinteractable.GetComponent<SpriteRenderer>();
+            var meshRendererToUse = objectinteractable.GetComponent<MeshRenderer>();
 
-            if (selectionRenderer != null)
+            if (spriteRenderer != null)
             {
-                selectionRenderer.material = highlightMaterial;
+                spriteRenderer.material = spriteHighlightMat;
+            }
+            else if (meshRendererToUse != null)
+            {
+                Material[] materials = meshRendererToUse.materials;
+                materials[1] = meshHighlightMat;
+                meshRendererToUse.materials = materials;
             }
             selectionObj = objectinteractable.transform;
             // curCol = this.GetComponentInChildren<SpriteRenderer>().color;

@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7321231504983880465}
   - component: {fileID: 7321231504983880463}
-  - component: {fileID: 7321231504983880464}
-  - component: {fileID: 4602301019783871618}
+  - component: {fileID: 2117154729}
   m_Layer: 0
   m_Name: Fence Right
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7321231504983880462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.3, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7321231505784342809}
@@ -51,7 +50,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &7321231504983880464
+--- !u!65 &2117154729
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,20 +61,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.824336, y: 1, z: 0.2}
-  m_Center: {x: 1.620997, y: 0.5, z: 0}
---- !u!114 &4602301019783871618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7321231504983880462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3707d1aaaea52424eb414da628d8dcdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Size: {x: 6.996833, y: 5.297399, z: 0.27229977}
+  m_Center: {x: 3.43, y: 2.61, z: 0.01748239}
 --- !u!1 &7321231505784342808
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,14 +87,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7321231505784342808}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.27, y: 3.01, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7321231504983880465}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7321231505784342810
 SpriteRenderer:
   m_ObjectHideFlags: 0

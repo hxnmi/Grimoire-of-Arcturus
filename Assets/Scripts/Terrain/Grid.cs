@@ -11,8 +11,6 @@ public class Grid : MonoBehaviour
     [SerializeField] float scale = .1f;
     [SerializeField] float treeNoiseScale = .05f;
     [SerializeField] float treeDensity = .5f;
-    [SerializeField] float riverNoiseScale = .06f;
-    [SerializeField] int rivers = 5;
     [SerializeField] int size = 100;
 
     Cell[,] grid;
@@ -154,7 +152,7 @@ public class Grid : MonoBehaviour
         mesh.uv = uvs.ToArray();
         mesh.RecalculateNormals();
 
-        GameObject waterObj = new GameObject("Watered");
+        GameObject waterObj = new GameObject("WaterCollider");
         waterObj.transform.SetParent(transform);
 
         MeshFilter meshFilter = waterObj.AddComponent<MeshFilter>();
@@ -163,7 +161,7 @@ public class Grid : MonoBehaviour
         MeshCollider meshCollider = waterObj.AddComponent<MeshCollider>();
         meshCollider.sharedMesh = mesh;
 
-        waterObj.AddComponent<CollisionCheck>();
+        waterObj.AddComponent<CollisionCheckTerrain>();
     }
 
     void DrawEdgeMesh(Cell[,] grid)
@@ -291,7 +289,7 @@ public class Grid : MonoBehaviour
     void GenerateTrees(Cell[,] grid)
     {
         float[,] noiseMap = new float[size, size];
-        (float xOffset, float yOffset) = (Random.Range(-10000f, 10000f), Random.Range(-10000f, 10000f));
+        (float xOffset, float yOffset) = (Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
         for (int y = 0; y < size; y++)
         {
             for (int x = 0; x < size; x++)
@@ -314,7 +312,6 @@ public class Grid : MonoBehaviour
                         GameObject prefab = treePrefabs[Random.Range(0, treePrefabs.Length)];
                         GameObject tree = Instantiate(prefab, transform);
                         tree.transform.localPosition = new Vector3(x, 0, y);
-                        tree.transform.localRotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
                     }
                 }
             }
