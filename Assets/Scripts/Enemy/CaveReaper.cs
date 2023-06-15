@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CaveReaper : Enemy
 {
+    Animator anim;
+    string currentState;
     float timeLeft = 3f;
     bool running = true;
     public override void Die()
     {
         //base.Die();
-        Debug.Log("Goblin Mati");
+        Debug.Log("Cave Reaper Mati");
         Destroy(this.gameObject);
         //animasi beda
     }
@@ -24,7 +26,7 @@ public class CaveReaper : Enemy
     private void FixedUpdate()
     {
         Vector3 direction = GetComponent<EnemyController>().direction;
-        GameObject.FindWithTag("GameController").GetComponent<Animation>().CReaperMoveAnimate(direction);
+        CReaperMoveAnimate(direction);
         if (running)
         {
             if (!EnemySensor.CurrentTargetObject && hp < maxHp)
@@ -43,4 +45,48 @@ public class CaveReaper : Enemy
             running = true;
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        GameObject player = GetComponent<EnemyController>().player.gameObject;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Attack(Random.Range(1, 10));
+            //animasi gebuk
+            
+        }
+    }
+
+    public void CReaperMoveAnimate(Vector3 direction)
+    {
+        direction.Normalize();
+        var speed = GetComponent<UnityEngine.AI.NavMeshAgent>().velocity.magnitude;
+        var movementDirection = GetComponent<UnityEngine.AI.NavMeshAgent>().velocity.normalized;
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        SpriteRenderer spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        if (speed < 0.2f)
+        {
+            ChangeAnimationState("Idle_CaveReaper");
+        }
+        else
+        {
+            ChangeAnimationState("Walk_CaveReaper");
+            if (movementDirection.x > 0 || direction.x > 0)
+                spriteRenderer.flipX = false;
+            else if (movementDirection.x < 0 || direction.x < 0)
+                spriteRenderer.flipX = true;
+        }
+    }
+
+
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        anim.Play(newState);
+
+        currentState = newState;
+    }
+
 }

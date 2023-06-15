@@ -23,20 +23,6 @@ public class BookSwitch : MonoBehaviour
         for (int i = 0; i < Front.Length; i++)
         {
             int rand = Random.Range(0, 2);
-            Front[i].GetComponent<Image>().sprite = spriteBook[rand];
-            if (Front[i].GetComponent<Image>().sprite == spriteBook[0])
-            {
-                Back[i].GetComponent<Image>().sprite = spriteBook[1];
-            }
-            else
-            {
-                Back[i].GetComponent<Image>().sprite = spriteBook[0];
-            }
-        }
-
-        for (int i = 0; i < Front.Length; i++)
-        {
-            int rand = Random.Range(0, 2);
             bool b = System.Convert.ToBoolean(rand);
             Front[i].SetActive(b);
             if (Front[i].activeSelf)
@@ -46,6 +32,19 @@ public class BookSwitch : MonoBehaviour
             else
             {
                 Back[i].SetActive(true);
+            }
+        }
+        for (int i = 0; i < Front.Length; i++)
+        {
+            int rand = Random.Range(0, 2);
+            Front[i].GetComponent<Image>().sprite = spriteBook[rand];
+            if (Front[i].GetComponent<Image>().sprite == spriteBook[0])
+            {
+                Back[i].GetComponent<Image>().sprite = spriteBook[1];
+            }
+            else
+            {
+                Back[i].GetComponent<Image>().sprite = spriteBook[0];
             }
         }
     }

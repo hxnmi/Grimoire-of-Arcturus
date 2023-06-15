@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BlueReaper : Enemy
 {
+    Animator anim;
+    string currentState;
     float timeLeft = 3f;
     bool running = true;
     public override void Die()
     {
         //base.Die();
-        Debug.Log("Goblin Mati");
+        Debug.Log("Blue Reaper Mati");
         Destroy(this.gameObject);
         //animasi beda
     }
@@ -24,7 +26,7 @@ public class BlueReaper : Enemy
     private void FixedUpdate()
     {
         Vector3 direction = GetComponent<EnemyController>().direction;
-        GameObject.FindWithTag("GameController").GetComponent<Animation>().BReaperMoveAnimate(direction);
+        BReaperMoveAnimate(direction);
         if (running)
         {
             if (!EnemySensor.CurrentTargetObject && hp < maxHp)
@@ -42,5 +44,55 @@ public class BlueReaper : Enemy
             timeLeft = 3f;
             running = true;
         }
+
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        GameObject player = GetComponent<EnemyController>().player.gameObject;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(EnemyAttDelay());
+        }
+    }
+
+    IEnumerator EnemyAttDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        Attack(Random.Range(1, 10));
+        //animasi ngoncal
+    }
+
+    public void BReaperMoveAnimate(Vector3 direction)
+    {
+        direction.Normalize();
+        var speed = GetComponent<UnityEngine.AI.NavMeshAgent>().velocity.magnitude;
+        var movementDirection = GetComponent<UnityEngine.AI.NavMeshAgent>().velocity.normalized;
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        SpriteRenderer spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        if (speed < 0.2f)
+        {
+            ChangeAnimationState("Idle_BlueReaper");
+        }
+        else
+        {
+            ChangeAnimationState("Walk_BlueReaper");
+            if (movementDirection.x > 0 || direction.x > 0)
+                spriteRenderer.flipX = false;
+            else if (movementDirection.x < 0 || direction.x < 0)
+                spriteRenderer.flipX = true;
+        }
+    }
+
+
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        anim.Play(newState);
+
+        currentState = newState;
+    }
+
 }

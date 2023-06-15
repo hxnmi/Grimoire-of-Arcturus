@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 6791785241200902666}
   - component: {fileID: 6791785241200902667}
   - component: {fileID: 6791785241200902669}
-  - component: {fileID: 6791785241200902668}
   - component: {fileID: 6791785241200902671}
   - component: {fileID: 2002249707}
+  - component: {fileID: 1748851218468158390}
   m_Layer: 0
   m_Name: Grimoire
   m_TagString: Interactable
@@ -250,20 +250,6 @@ MonoBehaviour:
   interactionType: 0
   weapon: {fileID: 0}
   reticle: {fileID: 0}
---- !u!136 &6791785241200902668
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791785241200902665}
-  m_Material: {fileID: 13400000, guid: 1fb55e31fe0d84d448ea75d42c050bff, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.58, z: 0}
 --- !u!114 &6791785241200902671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,3 +273,17 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &1748851218468158390
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791785241200902665}
+  m_Material: {fileID: 13400000, guid: 1fb55e31fe0d84d448ea75d42c050bff, type: 2}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.5, z: 0}

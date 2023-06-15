@@ -52,8 +52,8 @@ public class ObeliskSide : Interactable
         spawner.GetComponent<SpawnEnemy>().enabled = false;
         player.GetComponent<Rigidbody>().isKinematic = true;
         player.GetComponent<PlayerCombat>().enabled = false;
-        companion.GetComponent<NavMeshAgent>().enabled = false;
-        companion.GetComponent<CompanionController>().enabled = false;
+        companion.transform.GetChild(0).tag = "Untagged";
+        companion.SetActive(false);
     }
 
     public override string GetDescription()

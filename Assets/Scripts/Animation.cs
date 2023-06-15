@@ -12,17 +12,15 @@ public class Animation : MonoBehaviour
     [SerializeField] GameObject averyBack;
     [SerializeField] GameObject grimoire;
     [SerializeField] GameObject player;
-    [SerializeField] GameObject companion;
-    [SerializeField] GameObject[] enemy;
+    [SerializeField] GameObject companion; public GameObject Companion { get => companion; }
 
     GameObject weapon;
     Animator anim;
     Animator anim2;
     Animator anim3;
-    Animator anim4;
-    Animator anim5;
     string currentState;
     bool walk;
+    bool playerAttack;
 
     [System.Obsolete]
     private void Start()
@@ -38,7 +36,7 @@ public class Animation : MonoBehaviour
         float verticalInput = playerMovement.VerticalInput;
 
         //Animation Player
-        if (rb.velocity.magnitude > 1f)
+        if (rb.velocity.magnitude > 1f && playerAttack == false)
         {
             if (verticalInput < 0)
             {
@@ -103,54 +101,90 @@ public class Animation : MonoBehaviour
         }
         else
         {
-            if (anim == averyFront.GetComponent<Animator>())
-                ChangeAnimationState("IdleFront_player");
-            else if (anim == averyBack.GetComponent<Animator>())
-                ChangeAnimationState("IdleBack_player");
-            else if (anim == averyRight.GetComponent<Animator>())
-                ChangeAnimationState("IdleRight_player");
-            else if (anim == averyLeft.GetComponent<Animator>())
-                ChangeAnimationState("IdleLeft_player");
+            if (playerAttack == false)
+            {
+                if (anim == averyFront.GetComponent<Animator>())
+                    ChangeAnimationState("IdleFront_player");
+                else if (anim == averyBack.GetComponent<Animator>())
+                    ChangeAnimationState("IdleBack_player");
+                else if (anim == averyRight.GetComponent<Animator>())
+                    ChangeAnimationState("IdleRight_player");
+                else if (anim == averyLeft.GetComponent<Animator>())
+                    ChangeAnimationState("IdleLeft_player");
+            }
         }
     }
 
     public void PlayerAttackAnimate(int type)
     {
+        playerAttack = true;
         if (anim == averyFront.GetComponent<Animator>())
         {
             if (type == 1)
+            {
                 anim.SetTrigger("Front");
-            // ChangeAnimationState("AttackFront_player");
+                StartCoroutine(playerAttDelay());
+                // ChangeAnimationState("AttackFront_player");
+            }
+
+
             else if (type == 2)
+            {
                 anim.SetTrigger("Front2");
-            // ChangeAnimationState("AttackFront2_player");
+                StartCoroutine(playerAttDelay());
+                // ChangeAnimationState("AttackFront2_player");
+            }
+
         }
         else if (anim == averyBack.GetComponent<Animator>())
         {
             if (type == 1)
+            {
                 anim.SetTrigger("Back");
-            // ChangeAnimationState("AttackBack_player");
+                StartCoroutine(playerAttDelay());
+                // ChangeAnimationState("AttackBack_player");
+            }
             else if (type == 2)
+            {
                 anim.SetTrigger("Back2");
-            // ChangeAnimationState("AttackBack2_player");
+                StartCoroutine(playerAttDelay());
+                // ChangeAnimationState("AttackBack2_player");
+            }
+
         }
         else if (anim == averyRight.GetComponent<Animator>())
         {
             if (type == 1)
+            {
                 anim.SetTrigger("Right");
-            // ChangeAnimationState("AttackRight_player");
+                StartCoroutine(playerAttDelay());
+                // ChangeAnimationState("AttackRight_player");
+            }
+
             else if (type == 2)
+            {
                 anim.SetTrigger("Right2");
-            // ChangeAnimationState("AttackRight2_player");
+                StartCoroutine(playerAttDelay());
+                // ChangeAnimationState("AttackRight2_player");
+            }
+
         }
         else if (anim == averyLeft.GetComponent<Animator>())
         {
             if (type == 1)
+            {
                 anim.SetTrigger("Left");
-            // ChangeAnimationState("AttackLeft_player");
+                StartCoroutine(playerAttDelay());
+                // ChangeAnimationState("AttackLeft_player");
+            }
+
             else if (type == 2)
+            {
                 anim.SetTrigger("Left2");
-            // ChangeAnimationState("AttackLeft2_player");
+                StartCoroutine(playerAttDelay());
+                // ChangeAnimationState("AttackLeft2_player");
+            }
+
         }
     }
 
@@ -174,67 +208,10 @@ public class Animation : MonoBehaviour
         }
     }
 
-    public void BReaperMoveAnimate(Vector3 direction)
+    IEnumerator playerAttDelay()
     {
-        direction.Normalize();
-        var speed = enemy[0].GetComponent<NavMeshAgent>().velocity.magnitude;
-        var movementDirection = enemy[0].GetComponent<NavMeshAgent>().velocity.normalized;
-        anim3 = enemy[0].transform.GetChild(0).GetComponent<Animator>();
-        SpriteRenderer spriteRenderer = enemy[0].transform.GetChild(0).GetComponent<SpriteRenderer>();
-        if (speed < 0.2f)
-        {
-            ChangeAnimationState3("Walk_BlueReaper");
-        }
-        else
-        {
-            ChangeAnimationState3("Walk_BlueReaper");
-            if (movementDirection.x > 0 || direction.x > 0)
-                spriteRenderer.flipX = false;
-            else if (movementDirection.x < 0 || direction.x < 0)
-                spriteRenderer.flipX = true;
-        }
-    }
-
-    public void CReaperMoveAnimate(Vector3 direction)
-    {
-        direction.Normalize();
-        var speed = enemy[1].GetComponent<NavMeshAgent>().velocity.magnitude;
-        var movementDirection = enemy[1].GetComponent<NavMeshAgent>().velocity.normalized;
-        anim4 = enemy[1].transform.GetChild(0).GetComponent<Animator>();
-        SpriteRenderer spriteRenderer = enemy[1].transform.GetChild(0).GetComponent<SpriteRenderer>();
-        if (speed < 0.2f)
-        {
-            ChangeAnimationState4("Walk_CaveReaper");
-        }
-        else
-        {
-            ChangeAnimationState4("Walk_CaveReaper");
-            if (movementDirection.x > 0 || direction.x > 0)
-                spriteRenderer.flipX = false;
-            else if (movementDirection.x < 0 || direction.x < 0)
-                spriteRenderer.flipX = true;
-        }
-    }
-
-    public void GReaperMoveAnimate(Vector3 direction)
-    {
-        direction.Normalize();
-        var speed = enemy[2].GetComponent<NavMeshAgent>().velocity.magnitude;
-        var movementDirection = enemy[2].GetComponent<NavMeshAgent>().velocity.normalized;
-        anim5 = enemy[2].transform.GetChild(0).GetComponent<Animator>();
-        SpriteRenderer spriteRenderer = enemy[2].transform.GetChild(0).GetComponent<SpriteRenderer>();
-        if (speed < 0.2f)
-        {
-            ChangeAnimationState5("Walk_GreenReaper");
-        }
-        else
-        {
-            ChangeAnimationState5("Walk_GreenReaper");
-            if (movementDirection.x > 0 || direction.x > 0)
-                spriteRenderer.flipX = false;
-            else if (movementDirection.x < 0 || direction.x < 0)
-                spriteRenderer.flipX = true;
-        }
+        yield return new WaitForSeconds(1f);
+        playerAttack = false;
     }
 
     void ChangeAnimationState(string newState)
@@ -254,28 +231,5 @@ public class Animation : MonoBehaviour
 
         currentState = newState;
     }
-    void ChangeAnimationState3(string newState)
-    {
-        if (currentState == newState) return;
 
-        anim3.Play(newState);
-
-        currentState = newState;
-    }
-    void ChangeAnimationState4(string newState)
-    {
-        if (currentState == newState) return;
-
-        anim4.Play(newState);
-
-        currentState = newState;
-    }
-    void ChangeAnimationState5(string newState)
-    {
-        if (currentState == newState) return;
-
-        anim5.Play(newState);
-
-        currentState = newState;
-    }
 }

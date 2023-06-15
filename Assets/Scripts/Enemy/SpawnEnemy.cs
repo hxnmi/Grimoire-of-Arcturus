@@ -6,6 +6,7 @@ public class SpawnEnemy : MonoBehaviour
 {
     [SerializeField] GameObject[] enemyPrefab;
     private float Timer;
+    Vector3 randomSpawnPos;
     [SerializeField] float maxTime;
 
     void Update()
@@ -13,9 +14,8 @@ public class SpawnEnemy : MonoBehaviour
         Timer += Time.deltaTime;
         if (Timer >= maxTime)
         {
-            Vector3 randomSpawnPos = new Vector3(Random.Range(30, 70), 1, Random.Range(30, 70));
-            for (int i = 0; i < enemyPrefab.Length; i++)
-                Instantiate(enemyPrefab[i], randomSpawnPos, Quaternion.identity);
+            randomSpawnPos = new Vector3(Random.Range(30, 120), 1, Random.Range(30, 120));
+            Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], randomSpawnPos, Quaternion.identity);
             Timer = 0f;
             maxTime += 1;
         }

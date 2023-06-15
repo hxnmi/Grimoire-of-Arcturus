@@ -50,7 +50,8 @@ public class EnemyController : MonoBehaviour
 
         if (direction.magnitude > this.chasingAccuracy)
         {
-            this.transform.Translate(0, 0, Time.deltaTime * this.chasingSpeed);
+            // this.transform.Translate(0, 0, Time.deltaTime * this.chasingSpeed);
+            this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(player.position);
         }
     }
 

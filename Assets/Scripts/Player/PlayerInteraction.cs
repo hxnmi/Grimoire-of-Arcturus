@@ -17,7 +17,7 @@ public class PlayerInteraction : MonoBehaviour
     //Camera cam;
     //public Transform button;
     //bool triggering = false;
-    public float fovDist = 40.0f;
+    public float fovDist = 10f;
     public float fovAngle = 360f;
     Transform selectionObj;
     GameObject objectinteractable; public GameObject Objectinteractable { get => objectinteractable; }
@@ -60,7 +60,7 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, direction, out hit) && direction.magnitude < fovDist && angle < fovAngle)
         {
-            Interactable interactable = objectinteractable.GetComponent<Collider>().GetComponent<Interactable>();
+            Interactable interactable = objectinteractable.GetComponent<Interactable>();
 
             Debug.DrawRay(this.transform.position, direction, Color.blue);
 
