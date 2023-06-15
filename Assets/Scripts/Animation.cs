@@ -183,7 +183,7 @@ public class Animation : MonoBehaviour
         SpriteRenderer spriteRenderer = enemy[0].transform.GetChild(0).GetComponent<SpriteRenderer>();
         if (speed < 0.2f)
         {
-            ChangeAnimationState3("Idle_BlueReaper");
+            ChangeAnimationState3("Walk_BlueReaper");
         }
         else
         {
@@ -204,7 +204,7 @@ public class Animation : MonoBehaviour
         SpriteRenderer spriteRenderer = enemy[1].transform.GetChild(0).GetComponent<SpriteRenderer>();
         if (speed < 0.2f)
         {
-            ChangeAnimationState4("Idle_CaveReaper");
+            ChangeAnimationState4("Walk_CaveReaper");
         }
         else
         {
@@ -225,7 +225,7 @@ public class Animation : MonoBehaviour
         SpriteRenderer spriteRenderer = enemy[2].transform.GetChild(0).GetComponent<SpriteRenderer>();
         if (speed < 0.2f)
         {
-            ChangeAnimationState5("Idle_GreenReaper");
+            ChangeAnimationState5("Walk_GreenReaper");
         }
         else
         {

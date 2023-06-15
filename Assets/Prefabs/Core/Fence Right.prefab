@@ -58,12 +58,12 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7321231504983880462}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1fb55e31fe0d84d448ea75d42c050bff, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.996833, y: 5.297399, z: 0.27229977}
-  m_Center: {x: 3.43, y: 2.61, z: 0.01748239}
+  m_Size: {x: 6.996833, y: 9.16365, z: 0.27229977}
+  m_Center: {x: 3.4299998, y: 4.5431247, z: 0.017482387}
 --- !u!210 &-5580373478705698464
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f9538cf9e99b026478b328b3b736a816, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
