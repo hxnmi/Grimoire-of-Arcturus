@@ -14,8 +14,8 @@ public class BookMechanism : MonoBehaviour
     [SerializeField] GameObject panelMiniGame;
     public Image[] m_Image;
     public Sprite[] m_SpriteArray;
-    public float m_Speed = .02f;
     private int m_IndexSprite;
+    public float m_Speed = .02f;
     Coroutine m_CorotineAnim;
     GameObject player;
     GameObject[] gos;
@@ -71,6 +71,7 @@ public class BookMechanism : MonoBehaviour
 
     IEnumerator Func_PlayAnimUI()
     {
+
         yield return new WaitForSeconds(m_Speed);
 
         if (m_IndexSprite >= m_SpriteArray.Length)
