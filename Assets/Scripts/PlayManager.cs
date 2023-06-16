@@ -7,6 +7,8 @@ public class PlayManager : MonoBehaviour
 {
     [SerializeField] GameObject panel;
     [SerializeField] GameObject Gate;
+    [SerializeField] GameObject spawner;
+    [SerializeField] Material skyboxMat;
     public List<BookMechanism> obeliskOn;
     void Update()
     {
@@ -30,9 +32,29 @@ public class PlayManager : MonoBehaviour
         StartCoroutine(comGetTag(companion));
     }
 
+    public void Restoration()
+    {
+        GetComponent<Animation>().Companion.transform.GetChild(1).gameObject.SetActive(false);
+        GetComponent<Animation>().Player.transform.GetChild(2).gameObject.SetActive(true);
+        RenderSettings.skybox = skyboxMat;
+        spawner.SetActive(false);
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject go in gos)
+        {
+            go.GetComponent<Enemy>().Die();
+        }
+    }
+
     IEnumerator comGetTag(GameObject companion)
     {
         yield return new WaitForSeconds(2f);
         companion.transform.GetChild(0).tag = "Interactable";
+    }
+
+    public IEnumerator CompletedNotif()
+    {
+        //need sound
+        yield return new WaitForSeconds(1f);
+        panel.transform.GetChild(4).gameObject.SetActive(false);
     }
 }

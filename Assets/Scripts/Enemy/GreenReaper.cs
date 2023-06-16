@@ -8,12 +8,14 @@ public class GreenReaper : Enemy
     string currentState;
     float timeLeft = 3f;
     bool running = true;
+    bool attacking;
     public override void Die()
     {
         //base.Die();
         Debug.Log("Green Reaper Mati");
-        Destroy(this.gameObject);
-        //animasi beda
+        checkDie = true;
+        ChangeAnimationState("Die_GreenReaper");
+        StartCoroutine(DieDelay());
     }
 
     private void Start()
@@ -44,9 +46,14 @@ public class GreenReaper : Enemy
             timeLeft = 3f;
             running = true;
         }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+        {
+            attacking = false;
+        }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         GameObject player = GetComponent<EnemyController>().player.gameObject;
         if (other.gameObject.CompareTag("Player"))
@@ -58,11 +65,17 @@ public class GreenReaper : Enemy
     IEnumerator EnemyAttDelay()
     {
         yield return new WaitForSeconds(1f);
+        attacking = true;
         Attack(Random.Range(1, 10));
-        //animasi magic
+        ChangeAnimationState("Attack_GreenReaper");
         GameObject.FindGameObjectWithTag("Player").transform.GetChild(6).GetChild(2).gameObject.SetActive(true);
     }
 
+    IEnumerator DieDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
+    }
 
     public void GReaperMoveAnimate(Vector3 direction)
     {
@@ -75,7 +88,7 @@ public class GreenReaper : Enemy
         {
             ChangeAnimationState("Idle_GreenReaper");
         }
-        else
+        else if (!attacking)
         {
             ChangeAnimationState("Walk_GreenReaper");
             if (movementDirection.x > 0 || direction.x > 0)

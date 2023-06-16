@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   maxHp: 100
+  checkDie: 0
 --- !u!210 &7846080763187835165
 SortingGroup:
   m_ObjectHideFlags: 0

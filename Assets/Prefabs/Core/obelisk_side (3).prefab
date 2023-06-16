@@ -85,7 +85,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083330227}
-  m_Text: lemienne
+  m_Text: seirei
   m_OffsetZ: 0
   m_CharacterSize: 0.15
   m_LineSpacing: 1
@@ -333,8 +333,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 05912a35b73707042a665ab6cea68e79, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: b89fede5361c9754b9327ecd301b0159, type: 2}
+  - {fileID: 2100000, guid: b89fede5361c9754b9327ecd301b0159, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

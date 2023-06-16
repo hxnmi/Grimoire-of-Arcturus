@@ -11,7 +11,7 @@ public class Animation : MonoBehaviour
     [SerializeField] GameObject averyLeft;
     [SerializeField] GameObject averyBack;
     [SerializeField] GameObject grimoire;
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject player; public GameObject Player { get => player; }
     [SerializeField] GameObject companion; public GameObject Companion { get => companion; }
 
     GameObject weapon;

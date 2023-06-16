@@ -11,6 +11,7 @@ TagManager:
   - Plane
   - EnemySpawner
   - Companion
+  - Restoration
   layers:
   - Default
   - TransparentFX

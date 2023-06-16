@@ -8,12 +8,14 @@ public class CaveReaper : Enemy
     string currentState;
     float timeLeft = 3f;
     bool running = true;
+    bool attacking;
     public override void Die()
     {
         //base.Die();
         Debug.Log("Cave Reaper Mati");
-        Destroy(this.gameObject);
-        //animasi beda
+        checkDie = true;
+        ChangeAnimationState("Die_CaveReaper");
+        StartCoroutine(DieDelay());
     }
 
     private void Start()
@@ -51,9 +53,13 @@ public class CaveReaper : Enemy
         GameObject player = GetComponent<EnemyController>().player.gameObject;
         if (other.gameObject.CompareTag("Player"))
         {
-            Attack(Random.Range(1, 10));
-            //animasi gebuk
-            
+            attacking = true;
+            ChangeAnimationState("Attack_CaveReaper");
+            GetComponent<Enemy>().Attack(Random.Range(1, 10));
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+            {
+                attacking = false;
+            }
         }
     }
 
@@ -68,7 +74,7 @@ public class CaveReaper : Enemy
         {
             ChangeAnimationState("Idle_CaveReaper");
         }
-        else
+        else if (!attacking)
         {
             ChangeAnimationState("Walk_CaveReaper");
             if (movementDirection.x > 0 || direction.x > 0)
@@ -78,8 +84,6 @@ public class CaveReaper : Enemy
         }
     }
 
-
-
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
@@ -87,6 +91,12 @@ public class CaveReaper : Enemy
         anim.Play(newState);
 
         currentState = newState;
+    }
+
+    IEnumerator DieDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
     }
 
 }

@@ -8,12 +8,14 @@ public class BlueReaper : Enemy
     string currentState;
     float timeLeft = 3f;
     bool running = true;
+    bool attacking;
     public override void Die()
     {
         //base.Die();
         Debug.Log("Blue Reaper Mati");
-        Destroy(this.gameObject);
-        //animasi beda
+        checkDie = true;
+        ChangeAnimationState("Die_BlueReaper");
+        StartCoroutine(DieDelay());
     }
 
     private void Start()
@@ -45,9 +47,14 @@ public class BlueReaper : Enemy
             running = true;
         }
 
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+        {
+            attacking = false;
+        }
+
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         GameObject player = GetComponent<EnemyController>().player.gameObject;
         if (other.gameObject.CompareTag("Player"))
@@ -60,7 +67,14 @@ public class BlueReaper : Enemy
     {
         yield return new WaitForSeconds(1f);
         Attack(Random.Range(1, 10));
-        //animasi ngoncal
+        attacking = true;
+        ChangeAnimationState("Attack_BlueReaper");
+    }
+
+    IEnumerator DieDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
     }
 
     public void BReaperMoveAnimate(Vector3 direction)
@@ -74,7 +88,7 @@ public class BlueReaper : Enemy
         {
             ChangeAnimationState("Idle_BlueReaper");
         }
-        else
+        else if (!attacking)
         {
             ChangeAnimationState("Walk_BlueReaper");
             if (movementDirection.x > 0 || direction.x > 0)

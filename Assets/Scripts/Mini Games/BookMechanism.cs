@@ -24,6 +24,7 @@ public class BookMechanism : MonoBehaviour
     bool[] isComplete = new bool[3];
     bool[] completed;
     public bool obeliskOn;
+    bool notif = true;
 
     void Start()
     {
@@ -55,7 +56,14 @@ public class BookMechanism : MonoBehaviour
 
         if (isComplete.SequenceEqual(completed))
         {
-            StartCoroutine(CompletedNotif());
+            var text = panel.transform.GetChild(4).gameObject;
+            if (!text.activeSelf && notif == true)
+                text.SetActive(true);
+            else
+            {
+                StartCoroutine(GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayManager>().CompletedNotif());
+                notif = false;
+            }
             Invoke("CompleteObelisk", 1.5f);
             obeliskOn = true;
         }
@@ -78,19 +86,13 @@ public class BookMechanism : MonoBehaviour
 
     void CompleteObelisk()
     {
-        player.GetComponent<PlayerInteraction>().Objectinteractable
+        notif = true;
+        var material = player.GetComponent<PlayerInteraction>().Objectinteractable
             .GetComponent<MeshRenderer>()
-            .materials[0]
-            .EnableKeyword("_EMISSION");
+            .materials[0];
+        material.EnableKeyword("_EMISSION");
+        material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.None;
         CloseObelisk();
-    }
-
-    IEnumerator panelClosedDelay()
-    {
-        yield return new WaitForSeconds(1f);
-
-        yield return new WaitForSeconds(0.5f);
-
     }
 
     public void CloseObelisk()
@@ -105,14 +107,5 @@ public class BookMechanism : MonoBehaviour
         player.GetComponent<Rigidbody>().isKinematic = false;
         GetComponent<BookSwitch>().RandomSwitch();
         panelMiniGame.SetActive(false);
-    }
-
-    IEnumerator CompletedNotif()
-    {
-        //need sound
-        yield return new WaitForSeconds(0.5f);
-        panel.transform.GetChild(4).gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        panel.transform.GetChild(4).gameObject.SetActive(false);
     }
 }
