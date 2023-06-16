@@ -48,8 +48,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject minigamePanel;
     [SerializeField] GameObject gameController;
 
+    GameObject sound;
+    [SerializeField] AudioClip audiowalk;
+    AudioSource sfxsource;
+
     private void Start()
     {
+
+        sfxsource = GetComponent<AudioSource>();
+        sound = GameObject.FindGameObjectWithTag("Sound");
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -113,7 +120,6 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-
     }
 
     private void StateHandler()
@@ -148,8 +154,16 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * smooth * Time.deltaTime);
 
         // Animation
+
+
         gameController.GetComponent<Animation>().PlayerMoveAnimate();
 
+        //Sound
+        if (grounded && rb.velocity.magnitude > 2f && sfxsource.isPlaying == false)
+            sfxsource.Play();
+        else
+            sfxsource.Pause();
+        sfxsource.volume = PlayerPrefs.GetFloat("SFXVolume");
     }
 
     private void Jump()

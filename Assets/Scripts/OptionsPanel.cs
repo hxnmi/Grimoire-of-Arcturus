@@ -10,8 +10,10 @@ public class OptionsPanel : MonoBehaviour
     [SerializeField] Toggle muteToggle;
     [SerializeField] Slider bgmSlider;
     [SerializeField] Slider sfxSlider;
+    [SerializeField] Slider monologueSlider;
     [SerializeField] TMP_Text bgmVolText;
     [SerializeField] TMP_Text sfxVolText;
+    [SerializeField] TMP_Text monologueVolText;
 
     void OnEnable()
     {
@@ -21,8 +23,10 @@ public class OptionsPanel : MonoBehaviour
         }
         bgmSlider.value = SoundManager.BgmVolume;
         sfxSlider.value = SoundManager.SfxVolume;
+        monologueSlider.value = SoundManager.MonologueVolume;
         SetBgmVolText(bgmSlider.value);
         SetSfxVolText(sfxSlider.value);
+        SetMonologueVolText(monologueSlider.value);
     }
 
     public void UpdateUI()
@@ -35,15 +39,21 @@ public class OptionsPanel : MonoBehaviour
             sfxSlider.SetValueWithoutNotify(0);
             SetSfxVolText(sfxSlider.value);
             sfxSlider.interactable = false;
+            monologueSlider.SetValueWithoutNotify(0);
+            SetSfxVolText(monologueSlider.value);
+            monologueSlider.interactable = false;
         }
         else
         {
             bgmSlider.SetValueWithoutNotify(SoundManager.BgmVolume);
             sfxSlider.SetValueWithoutNotify(SoundManager.SfxVolume);
+            monologueSlider.SetValueWithoutNotify(SoundManager.MonologueVolume);
             SetBgmVolText(bgmSlider.value);
             bgmSlider.interactable = true;
             SetSfxVolText(sfxSlider.value);
             sfxSlider.interactable = true;
+            SetMonologueVolText(monologueSlider.value);
+            monologueSlider.interactable = true;
         }
     }
 
@@ -61,13 +71,20 @@ public class OptionsPanel : MonoBehaviour
     {
         SoundManager.Instance.SetSfxVolume(value);
     }
+    public void SetMonologueVol(float value)
+    {
+        SoundManager.Instance.SetMonologueVolume(value);
+    }
 
     public void SetBgmVolText(float value)
     {
         bgmVolText.text = Mathf.RoundToInt(bgmSlider.value * 100).ToString();
     }
-
     public void SetSfxVolText(float value)
+    {
+        sfxVolText.text = Mathf.RoundToInt(sfxSlider.value * 100).ToString();
+    }
+    public void SetMonologueVolText(float value)
     {
         sfxVolText.text = Mathf.RoundToInt(sfxSlider.value * 100).ToString();
     }

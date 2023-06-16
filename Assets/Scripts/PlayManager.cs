@@ -9,6 +9,7 @@ public class PlayManager : MonoBehaviour
     [SerializeField] GameObject Gate;
     [SerializeField] GameObject spawner;
     [SerializeField] Material skyboxMat;
+    [SerializeField] AudioSource[] sfxsource;
     public List<BookMechanism> obeliskOn;
     void Update()
     {
@@ -23,6 +24,8 @@ public class PlayManager : MonoBehaviour
                 Gate.transform.parent.GetChild(1).GetChild(0).GetComponent<MeshRenderer>().materials[0].EnableKeyword("_EMISSION");
             }
         }
+        foreach (AudioSource i in sfxsource)
+            i.volume = PlayerPrefs.GetFloat("SFXVolume");
     }
 
     public void CompanionOn()

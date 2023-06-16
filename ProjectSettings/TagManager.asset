@@ -12,6 +12,7 @@ TagManager:
   - EnemySpawner
   - Companion
   - Restoration
+  - Sound
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - 
+  - PostProcessing
   - 
   - 
   - 

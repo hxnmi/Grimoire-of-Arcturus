@@ -13,7 +13,6 @@ public class Animation : MonoBehaviour
     [SerializeField] GameObject grimoire;
     [SerializeField] GameObject player; public GameObject Player { get => player; }
     [SerializeField] GameObject companion; public GameObject Companion { get => companion; }
-
     GameObject weapon;
     Animator anim;
     Animator anim2;
