@@ -18,6 +18,7 @@ public class CheckTriggerMonologue : MonoBehaviour
                 SoundManager.Instance.PlayMonologue(monologue);
                 transform.parent.gameObject.GetComponent<Monologue>().MonologueRandom(mono);
                 disableText = true;
+                transform.GetComponent<BoxCollider>().enabled = false;
             }
         }
     }

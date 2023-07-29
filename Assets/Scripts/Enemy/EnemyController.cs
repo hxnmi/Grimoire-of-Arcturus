@@ -117,7 +117,7 @@ public class EnemyController : MonoBehaviour
     {
         State tmpstate = curState;
 
-        GameObject.FindWithTag("GameController").GetComponent<Animation>().CompanionMoveAnimate();
+        // GameObject.FindWithTag("GameController").GetComponent<Animation>().CompanionMoveAnimate();
 
         if (ICanSee(player))
         {

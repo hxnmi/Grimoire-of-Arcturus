@@ -8,7 +8,7 @@ public class CaveReaper : Enemy
     string currentState;
     float timeLeft = 3f;
     bool running = true;
-    bool attacking;
+    bool attacking = false;
     public override void Die()
     {
         //base.Die();
@@ -46,21 +46,29 @@ public class CaveReaper : Enemy
             timeLeft = 3f;
             running = true;
         }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+            attacking = false;
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        var howlong = 0 + Time.deltaTime;
+        attacking = true;
         GameObject player = GetComponent<EnemyController>().player.gameObject;
         if (other.gameObject.CompareTag("Player"))
         {
-            attacking = true;
-            ChangeAnimationState("Attack_CaveReaper");
-            GetComponent<Enemy>().Attack(Random.Range(1, 10));
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+            if (attacking)
             {
-                attacking = false;
+                ChangeAnimationState("Attack_CaveReaper");
+                GetComponent<Enemy>().Attack(Random.Range(1, 10));
             }
         }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        attacking = false;
     }
 
     public void CReaperMoveAnimate(Vector3 direction)
@@ -70,17 +78,20 @@ public class CaveReaper : Enemy
         var movementDirection = GetComponent<UnityEngine.AI.NavMeshAgent>().velocity.normalized;
         anim = transform.GetChild(0).GetComponent<Animator>();
         SpriteRenderer spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        if (speed < 0.2f)
+        if (!attacking)
         {
-            ChangeAnimationState("Idle_CaveReaper");
-        }
-        else if (!attacking)
-        {
-            ChangeAnimationState("Walk_CaveReaper");
-            if (movementDirection.x > 0 || direction.x > 0)
-                spriteRenderer.flipX = false;
-            else if (movementDirection.x < 0 || direction.x < 0)
-                spriteRenderer.flipX = true;
+            if (speed < 0.2f)
+            {
+                ChangeAnimationState("Idle_CaveReaper");
+            }
+            else
+            {
+                ChangeAnimationState("Walk_CaveReaper");
+                if (movementDirection.x > 0 || direction.x > 0)
+                    spriteRenderer.flipX = false;
+                else if (movementDirection.x < 0 || direction.x < 0)
+                    spriteRenderer.flipX = true;
+            }
         }
     }
 

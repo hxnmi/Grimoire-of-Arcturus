@@ -8,7 +8,7 @@ public class GreenReaper : Enemy
     string currentState;
     float timeLeft = 3f;
     bool running = true;
-    bool attacking;
+    bool attacking = false;
     public override void Die()
     {
         //base.Die();
@@ -48,27 +48,29 @@ public class GreenReaper : Enemy
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
-        {
             attacking = false;
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        attacking = true;
         GameObject player = GetComponent<EnemyController>().player.gameObject;
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(EnemyAttDelay());
+            if (attacking)
+            {
+                Attack(Random.Range(1, 10));
+                ChangeAnimationState("Attack_GreenReaper");
+                GameObject.FindGameObjectWithTag("Player").transform.GetChild(6).GetChild(2).gameObject.SetActive(true);
+            }
         }
     }
 
-    IEnumerator EnemyAttDelay()
+    private void OnTriggerExit(Collider other)
     {
-        yield return new WaitForSeconds(1f);
-        attacking = true;
-        Attack(Random.Range(1, 10));
-        ChangeAnimationState("Attack_GreenReaper");
-        GameObject.FindGameObjectWithTag("Player").transform.GetChild(6).GetChild(2).gameObject.SetActive(true);
+        attacking = false;
+        GameObject.FindGameObjectWithTag("Player").transform.GetChild(6).GetChild(2).gameObject.SetActive(false);
     }
 
     IEnumerator DieDelay()
@@ -84,17 +86,20 @@ public class GreenReaper : Enemy
         var movementDirection = GetComponent<UnityEngine.AI.NavMeshAgent>().velocity.normalized;
         anim = transform.GetChild(0).GetComponent<Animator>();
         SpriteRenderer spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        if (speed < 0.2f)
+        if (!attacking)
         {
-            ChangeAnimationState("Idle_GreenReaper");
-        }
-        else if (!attacking)
-        {
-            ChangeAnimationState("Walk_GreenReaper");
-            if (movementDirection.x > 0 || direction.x > 0)
-                spriteRenderer.flipX = false;
-            else if (movementDirection.x < 0 || direction.x < 0)
-                spriteRenderer.flipX = true;
+            if (speed < 0.2f)
+            {
+                ChangeAnimationState("Idle_GreenReaper");
+            }
+            else
+            {
+                ChangeAnimationState("Walk_GreenReaper");
+                if (movementDirection.x > 0 || direction.x > 0)
+                    spriteRenderer.flipX = false;
+                else if (movementDirection.x < 0 || direction.x < 0)
+                    spriteRenderer.flipX = true;
+            }
         }
     }
 

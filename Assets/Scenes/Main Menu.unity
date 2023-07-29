@@ -238,6 +238,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &40936815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5800015213806902122, guid: 6e6cb28ea50e7fb448ad60ba4e97c13b, type: 3}
+  m_PrefabInstance: {fileID: 812682372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &58061859
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +682,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff19652ce8b9a841a0aa603170b2156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &409161830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 860919149957498725, guid: 6e6cb28ea50e7fb448ad60ba4e97c13b, type: 3}
+  m_PrefabInstance: {fileID: 812682372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &702621488
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +895,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703763365}
   m_CullTransparentMesh: 1
+--- !u!82 &748078250 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1418555703, guid: d6622df268730a54b961da3d2639b215, type: 3}
+  m_PrefabInstance: {fileID: 5954428197658724460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &749715599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,17 +1035,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749715599}
   m_CullTransparentMesh: 1
---- !u!114 &763908924 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5954428196396674922, guid: d6622df268730a54b961da3d2639b215, type: 3}
-  m_PrefabInstance: {fileID: 5954428197658724460}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d2a14a5e8289e44096ae1a00d176401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &812682372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1310,6 +1326,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7559250383943376431, guid: 6e6cb28ea50e7fb448ad60ba4e97c13b, type: 3}
+      propertyPath: monologueSlider
+      value: 
+      objectReference: {fileID: 40936815}
+    - target: {fileID: 7559250383943376431, guid: 6e6cb28ea50e7fb448ad60ba4e97c13b, type: 3}
+      propertyPath: monologueVolText
+      value: 
+      objectReference: {fileID: 409161830}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e6cb28ea50e7fb448ad60ba4e97c13b, type: 3}
 --- !u!224 &812682373 stripped
@@ -1905,7 +1929,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 763908924}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: playSFX
         m_Mode: 2
@@ -1999,6 +2023,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4882222162629680677, guid: d6622df268730a54b961da3d2639b215, type: 3}
+      propertyPath: monologue
+      value: 
+      objectReference: {fileID: 748078250}
     - target: {fileID: 5954428196396674921, guid: d6622df268730a54b961da3d2639b215, type: 3}
       propertyPath: m_Name
       value: Sound
